@@ -1,0 +1,136 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="row">
+
+    <div class="col">
+    </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-9 ">
+        <div class="alert alert-danger alert-dismissible fade show  mx-5 my-3  text-center" role="alert" >
+			{{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="col">
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
+        <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center  pt-5">
+            <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg pb-0" style="border-radius: 5px;">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h4 class="text-dark mb-4">ثبت نام</h4>
+                    </div>
+
+                    <form class="user"  method="post" action="{% url 'RegisterUser' %}" >
+						{% csrf_token %}
+                        <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="نام کاربری" required="" name="username" style="text-align: center;"></div>
+                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" placeholder="ایمیل" required="" name="email" style="text-align: center;"></div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" placeholder="رمز عبور" required="" name="password" style="text-align: center;"></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="verifyPassword" placeholder="تکرار رمز عبور" required="" name="rptpassword" style="text-align: center;"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+                            <p id="passwordErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+                        </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" disabled>ثبت نام</button>
+                        <hr>
+                    </form>
+                    <div class="text-center"></div>
+                </div>
+            </div>
+			<script>
+	let email = document.getElementById("email")
+	let password = document.getElementById("password")
+	let verifyPassword = document.getElementById("verifyPassword")
+	let submitBtn = document.getElementById("submitBtn")
+	let emailErrorMsg = document.getElementById('emailErrorMsg')
+	let passwordErrorMsg = document.getElementById('passwordErrorMsg')
+
+
+	const form = document.querySelector('form');
+  	// const submitBtn = document.querySelector('#submitBtn');
+
+  	form.addEventListener('input', () => {
+    	if (form.checkValidity()) {
+      	submitBtn.disabled = false;
+    	} else {
+      	submitBtn.disabled = true;
+    	}
+  	});
+
+	function displayErrorMsg(type, msg) {
+		if(type == "email") {
+			emailErrorMsg.style.display = "block"
+			emailErrorMsg.innerHTML = msg
+			submitBtn.disabled = true
+		}
+		else {
+			passwordErrorMsg.style.display = "block"
+			passwordErrorMsg.innerHTML = msg
+			submitBtn.disabled = true
+		}
+	}
+
+	function hideErrorMsg(type) {
+		if(type == "email") {
+			emailErrorMsg.style.display = "none"
+			emailErrorMsg.innerHTML = ""
+			submitBtn.disabled = true
+			if(passwordErrorMsg.innerHTML == "")
+				submitBtn.disabled = false
+		}
+		else {
+			passwordErrorMsg.style.display = "none"
+			passwordErrorMsg.innerHTML = ""
+			if(emailErrorMsg.innerHTML == "")
+				submitBtn.disabled = false
+		}
+	}
+	
+	// Validate password upon change
+	password.addEventListener("change", function() {
+
+		// If password has no value, then it won't be changed and no error will be displayed
+		if(password.value.length == 0 && verifyPassword.value.length == 0) hideErrorMsg("password")
+		
+		// If password has a value, then it will be checked. In this case the passwords don't match
+		else if(password.value !== verifyPassword.value) displayErrorMsg("password", "رمز عبور و تکرار آن با هم برابر نیستند")
+		
+		// When the passwords match, we check the length
+		else {
+			// Check if the password has 8 characters or more
+			if(password.value.length >= 8)
+				hideErrorMsg("password")
+			else
+				displayErrorMsg("password", "رمز عبور نباید کمتر از 8 کارکتر باشد")
+		}
+	})
+	
+	verifyPassword.addEventListener("change", function() {
+		if(password.value !== verifyPassword.value)
+			displayErrorMsg("password", "رمز عبور و تکرار آن با هم برابر نیستند")
+		else {
+			// Check if the password has 8 characters or more
+			if(password.value.length >= 8)
+				hideErrorMsg("password")
+			else
+				displayErrorMsg("password", "رمز عبور نباید کمتر از 8 کارکتر باشد")
+		}
+	})
+
+	// Validate email upon change
+	email.addEventListener("change", function() {
+		// Check if the email is valid using a regular expression (string@string.string)
+		if(email.value.match(/^[^@]+@[^@]+\.[^@]+$/))
+			hideErrorMsg("email")
+		else
+			displayErrorMsg("email", "فرمت ایمیل نادرست است!")
+	});
+</script>
+    </div>
+	{% endblock %}
