@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .models import Userinformation
 
 
 def RegisterUser(request):
@@ -44,3 +45,10 @@ def LogoutUser(request):
         messages.info(request,'شما از حساب کاربری خود خارج شدید')
         logout(request) 
         return redirect('Home')
+
+
+def Profile(request):
+    userinfo=Userinformation.objects.get(user=request.user)
+    return render(request,'Profile.html',{'userinfo':userinfo})
+def ProfileEdit(request):
+    return render(request,'ProfileEdit.html',)
