@@ -48,7 +48,26 @@ def LogoutUser(request):
 
 
 def Profile(request):
-    userinfo=Userinformation.objects.get(user=request.user)
-    return render(request,'Profile.html',{'userinfo':userinfo})
+    userinfo=Userinformation.objects.filter(user=request.user)
+    if(userinfo):
+        userinfo1=Userinformation.objects.get(user=request.user)
+    else:
+        user_completed=Userinformation(user=request.user)
+        user_completed.save()
+        userinfo1=Userinformation.objects.filter(user=request.user)
+    return render(request,'Profile.html',{'userinfo':userinfo1})
 def ProfileEdit(request):
-    return render(request,'ProfileEdit.html',)
+     userinformation=Userinformation.objects.get(user=request.user)
+     print("Test 1 :")
+     print(userinformation)
+     if request.method == 'POST':
+        tel = request.POST['tel']
+        kodeposti = request.POST['kodeposti']
+        address = request.POST['address']
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
+        user_info1 = Userinformation(user=request.user,tel=tel,kodeposti=kodeposti,address=address)
+        # user_info2=User.objects.update_or_create(id=request.user.id,username=request.user.username,first_name=firstname,last_name=lastname)
+        user_info1.save()
+        return redirect('Profile')
+     return render(request,'ProfileEdit.html',{'userinformation':userinformation})

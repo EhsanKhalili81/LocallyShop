@@ -4,9 +4,60 @@
 {% csrf_token %}
 
 
-<div class="row vh-100">
+<div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center  pt-5 mb-4">
+    <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg pb-0" style="border-radius: 5px;">
+        <div class="p-5">
+            <div class="text-center">
+                <h4 class="text-dark mb-4">تکمیل اطلاعات </h4>
+            </div>
+            <form class="user"  method="post" action="{% url 'ProfileEdit'%}" >
+                {% csrf_token %}
+                <div class="row mb-3">
+                    {% if request.user.first_name%}
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" value="{{request.user.first_name}}" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" value="{{request.user.last_name}}" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
+                    {% else %}
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
+                    {% endif %}
+                </div>
+                <div class="row mb-3">
+                    {% if userinformation %}
+                    <div class="col-sm-6 mb-3 mb-sm-0"><label for="" class="align-"> شماره تلفن</label></div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" value="{{userinformation.tel}}" type="number" id="text" placeholder="شماره تلفن" required="" name="tel" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input class="form-control form-control-user" type="number" value="{{userinformation.kodeposti}}" id="text" placeholder="کد پستی" required="" name="kodeposti" style="text-align: center;"></div>
+                </div>
+                <div class="mb-3"><input class="form-control form-control-user" type="text" value="{{userinformation.address}}" placeholder="آدرس" required="" name="address" style="text-align: center;"></div>
+                {% else %}
+                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="number" id="text" placeholder="شماره تلفن" required="" name="tel" style="text-align: center;"></div>
+                <div class="col-sm-6"><input class="form-control form-control-user" type="number" id="text" placeholder="کد پستی" required="" name="kodeposti" style="text-align: center;"></div>
+            </div>
+            <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="آدرس" required="" name="address" style="text-align: center;"></div>
+            {% endif %}
+                <div class="row mb-3">
+                    <p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+                    <p id="passwordErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
+                </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" disabled>ذخیره</button>
+                <hr>
+            </form>
+            <div class="text-center"></div>
+        </div>
+    </div>
+    <script>
 
+
+const form = document.querySelector('form');
+// const submitBtn = document.querySelector('#submitBtn');
+
+form.addEventListener('input', () => {
+if (form.checkValidity()) {
+  submitBtn.disabled = false;
+} else {
+  submitBtn.disabled = true;
+}
+});
+
+</script>
 </div>
-
 
 {% endblock %}
