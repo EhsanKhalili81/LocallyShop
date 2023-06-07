@@ -14,14 +14,14 @@ background: #f6d365;
 background: -webkit-linear-gradient(to right bottom, rgb(67, 47, 222), rgb(40, 123, 248));
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right bottom, rgb(97, 160, 255), rgb(31, 31, 247))
+background: linear-gradient(to right bottom, rgb(29, 30, 32), rgb(10, 10, 25))
 }
     </style>
 </head>
 
 <body>
   {% csrf_token %}
-    <div class=" shadow-lg " style="background-color: rgb(31, 31, 247) ;">
+    <div class=" shadow-lg " style="background-color: #2F4F4F;" >
         <nav class="navbar navbar-expand-lg navbar-dark container"rgb(139, 139, 255)>
           <div class="container-fluid" style="font-family:Titr;">
             <a class="navbar-brand text-white"  href="#" style="width: 20px;">فروشگاه محصولات بومی و محلی</a>
@@ -37,19 +37,19 @@ background: linear-gradient(to right bottom, rgb(97, 160, 255), rgb(31, 31, 247)
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     دسته بندی
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: rgb(31, 31, 247) ;
+                  <!-- <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: rgb(31, 31, 247) ;
                   ;">
                   {% for i in ct %}
                     <li><a class="dropdown-item text-white" href="#">{{ i.Title }}</a></li>
                     {% endfor %}
-                  </ul>
+                  </ul> -->
                 </li>
                 {% if request.user.id %}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{request.user.username}}
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: rgb(31, 31, 247) ;
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #2F4F4F;;
                   ;">
                     <li><a class="dropdown-item text-white" href="{% url 'Profile' %}">پروفایل</a></li>
                     <li><a class="dropdown-item text-white" href="#">سفارشات</a></li>
@@ -82,7 +82,7 @@ background: linear-gradient(to right bottom, rgb(97, 160, 255), rgb(31, 31, 247)
       
       {% endblock %}
 
-    <footer class="text-center " style="background-color: rgb(67, 47, 222) ;">
+    <footer class="text-center" style="background-color: #2F4F4F;">
         <div class="container text-white py-4 py-lg-5 py-sm-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-light" style="text-decoration: none;" href="#">درباره ما</a></li>

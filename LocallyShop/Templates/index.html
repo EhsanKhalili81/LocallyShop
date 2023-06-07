@@ -20,29 +20,13 @@
   </div>
   {% endfor %}
 {% endif %}
-    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1" style="position: relative;padding-top: 57px;">
+    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1" style="position: relative;">
         <div class="carousel-inner">
+            {% for s in slider%}
             <div class="carousel-item active">
-                <div class="bg-light border rounded border-light hero-nature carousel-hero jumbotron py-5 px-4">
-                    <h1 class="hero-title">Hero Nature</h1>
-                    <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
-                </div>
+                <img class="d-block w-100 " src="{{s.Image.url}}" alt="First slide"  style="height: 500px;">
             </div>
-            <div class="carousel-item">
-                <div class="bg-light border rounded border-light hero-photography carousel-hero jumbotron py-5 px-4">
-                    <h1 class="hero-title">Hero Photography</h1>
-                    <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="bg-light border rounded border-light hero-technology carousel-hero jumbotron py-5 px-4">
-                    <h1 class="hero-title">Hero Technology</h1>
-                    <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
-                </div>
-            </div>
+            {% endfor%}
         </div>
         <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
         <ol class="carousel-indicators">

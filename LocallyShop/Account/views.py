@@ -67,7 +67,11 @@ def ProfileEdit(request):
         firstname = request.POST['fname']
         lastname = request.POST['lname']
         user_info1 = Userinformation(user=request.user,tel=tel,kodeposti=kodeposti,address=address)
-        # user_info2=User.objects.update_or_create(id=request.user.id,username=request.user.username,first_name=firstname,last_name=lastname)
+        user_info2=User.objects.get(pk=request.user.id)
+        print(user_info2)
+        user_info2.first_name=firstname
+        user_info2.last_name=lastname
+        user_info2.save()
         user_info1.save()
         return redirect('Profile')
      return render(request,'ProfileEdit.html',{'userinformation':userinformation})
