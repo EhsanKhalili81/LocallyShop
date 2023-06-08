@@ -20,11 +20,11 @@
   </div>
   {% endfor %}
 {% endif %}
-    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1" style="position: relative;">
-        <div class="carousel-inner">
+    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1" style="position: relative;padding-top: 52px;">
+        <div class="carousel-inner container">
             {% for s in slider%}
-            <div class="carousel-item active">
-                <img class="d-block w-100 " src="{{s.Image.url}}" alt="First slide"  style="height: 500px;">
+            <div class="carousel-item active"  style="height: 700px;">
+                <img class="d-block w-100 h-100" src="{{s.Image.url}}" alt="First slide">
             </div>
             {% endfor%}
         </div>
@@ -42,18 +42,12 @@
                 <p style="margin-left: 34px;color: rgba(255,255,255,0.5);font-size: 14px;"></p>
             </div>
             <div class="row">
-                <div class="col-md-4 cust_blogteaser" style="padding-bottom: 20px;margin-bottom: 32px;"><a href="#"><img class="img-fluid" style="height: auto;" src="assets/img/image_03.png"></a>
-                    <h3 style="text-align: left;margin-top: 20px;font-family: 'Open Sans', sans-serif;font-size: 18px;margin-right: 0;margin-left: 24px;line-height: 34px;letter-spacing: 0px;font-style: normal;font-weight: bold;">INS: Claims Executive Forum 2018<br></h3>
-                    <p class="text-secondary" style="text-align: left;font-size: 14px;font-family: 'Open Sans', sans-serif;line-height: 22px;color: rgb(9,9,10);margin-left: 24px;">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id. </p>
+                {% for cards in card%}
+                <div class="col-md-4 cust_blogteaser" style="padding-bottom: 20px;margin-bottom: 32px;"><a href="#"><img class="img-fluid" style="height: auto;" src="{{cards.Image.url}}"></a>
+                    <h3 style="text-align: right;margin-top: 20px;font-family: 'Open Sans', sans-serif;font-size: 18px;margin-right: 0;margin-left: 24px;line-height: 34px;letter-spacing: 0px;font-style: normal;font-weight: bold;">{{cards.Title}}:<br></h3>
+                    <p class="text-secondary" style="text-align: right;font-size: 14px;font-family: 'Open Sans', sans-serif;line-height: 22px;color: rgb(9,9,10);margin-left: 24px;word-wrap: break-word;">{{cards.Description}}</p>
                 </div>
-                <div class="col-md-4 cust_blogteaser" style="padding-bottom: 20px;margin-bottom: 32px;"><a href="#"><img class="img-fluid" style="height: auto;" src="assets/img/image_03.png"></a>
-                    <h3 style="text-align: left;margin-top: 20px;font-family: 'Open Sans', sans-serif;font-size: 18px;margin-right: 0;margin-left: 24px;line-height: 34px;letter-spacing: 0px;font-style: normal;font-weight: bold;">INS: Claims Executive Forum 2018<br></h3>
-                    <p class="text-secondary" style="text-align: left;font-size: 14px;font-family: 'Open Sans', sans-serif;line-height: 22px;color: rgb(9,9,10);margin-left: 24px;">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id. </p>
-                </div>
-                <div class="col-md-4 cust_blogteaser" style="padding-bottom: 20px;margin-bottom: 32px;"><a href="#"><img class="img-fluid" style="height: auto;" src="assets/img/image_04.png"></a>
-                    <h3 style="text-align: left;margin-top: 20px;font-family: 'Open Sans', sans-serif;font-size: 18px;margin-right: 0;margin-left: 24px;line-height: 34px;letter-spacing: 0px;font-style: normal;font-weight: bold;">INS: Claims Executive Forum 2018<br></h3>
-                    <p class="text-secondary" style="text-align: left;font-size: 14px;font-family: 'Open Sans', sans-serif;line-height: 22px;color: rgb(9,9,10);margin-left: 24px;">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id. </p><a class="h4" href="#"></a>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

@@ -11,25 +11,25 @@
 background: #f6d365;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right bottom, rgb(67, 47, 222), rgb(40, 123, 248));
+background: -webkit-linear-gradient(to right bottom, rgb(67, 47, 222), rgb(52, 177, 244));
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right bottom, rgb(29, 30, 32), rgb(10, 10, 25))
+background: linear-gradient(to right bottom, rgb(105, 147, 231), rgb(21, 120, 212))
 }
     </style>
 </head>
 
 <body>
   {% csrf_token %}
-    <div class=" shadow-lg " style="background-color: #2F4F4F;" >
+    <div class=" shadow-lg " style="background-color: #309cdf;" >
         <nav class="navbar navbar-expand-lg navbar-dark container"rgb(139, 139, 255)>
           <div class="container-fluid" style="font-family:Titr;">
             <a class="navbar-brand text-white"  href="#" style="width: 20px;">فروشگاه محصولات بومی و محلی</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-              <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <div class="collapse navbar-collapse " id="navbarScroll">
+              <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
                   <a class="nav-link active text-white " aria-current="page" href="{% url 'Home'%}">صفحه اول</a>
                 </li>
@@ -37,19 +37,19 @@ background: linear-gradient(to right bottom, rgb(29, 30, 32), rgb(10, 10, 25))
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     دسته بندی
                   </a>
-                  <!-- <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: rgb(31, 31, 247) ;
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #309cdf ;
                   ;">
-                  {% for i in ct %}
+                  {% for i in my_object %}
                     <li><a class="dropdown-item text-white" href="#">{{ i.Title }}</a></li>
                     {% endfor %}
-                  </ul> -->
+                  </ul>
                 </li>
                 {% if request.user.id %}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{request.user.username}}
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #2F4F4F;;
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #309cdf;;
                   ;">
                     <li><a class="dropdown-item text-white" href="{% url 'Profile' %}">پروفایل</a></li>
                     <li><a class="dropdown-item text-white" href="#">سفارشات</a></li>
@@ -82,7 +82,7 @@ background: linear-gradient(to right bottom, rgb(29, 30, 32), rgb(10, 10, 25))
       
       {% endblock %}
 
-    <footer class="text-center" style="background-color: #2F4F4F;">
+    <footer class="text-center" style="background-color: #309cdf;">
         <div class="container text-white py-4 py-lg-5 py-sm-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-light" style="text-decoration: none;" href="#">درباره ما</a></li>
