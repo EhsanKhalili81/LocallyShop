@@ -2,20 +2,23 @@
 
 {% block content %}
 
-<div class="row container text-center pt-5" style="padding-right: 330px;">
+<div class="row container-fluid text-center pt-5 ms-0 justify-content-center" >
+      <div class="col-2"></div>
+      <div class="col-7">
         <div class="card m-3" style="width: 50rem;padding-right: unset;">
-            <div style="width: 800px; height: 400px;" class="">
-                <img src="{{ pr.Image.url }}" class="card-img-top h-100 w-100" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ pr.Title }}</h5>
-              <h6 class="card-title"> توضیحات : {{ pr.Description }}</h6>
-              <p class="card-text"> قیمت : {{ pr.Price }} ریال</p>
-              <h6 class="card-text">فروشنده: {{ pr.User }} </h6>
-              <a href="#" class="btn btn-primary" style="font-size:large;">اضافه به سبد خرید</a>
-            </div>
+          <div style="width: 800px; height: 400px;" class="">
+              <img src="{{ pr.Image.url }}" class="card-img-top h-100 w-100 " alt="...">
           </div>
-    
+          <div class="card-body">
+            <h5 class="card-title">{{ pr.Title }}</h5>
+            <h6 class="card-title"> توضیحات : {{ pr.Description }}</h6>
+            <p class="card-text"> قیمت : {{ pr.Price }} ریال</p>
+            <h6 class="card-text">فروشنده: {{ pr.User }} </h6>
+            <a href="#" class="btn btn-primary" style="font-size:large;">اضافه به سبد خرید</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
 </div>
 
 {% endblock %}

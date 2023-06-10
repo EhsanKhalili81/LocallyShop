@@ -6,8 +6,8 @@ from Seller.models import Product
 
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    sumprice = models.PositiveBigIntegerField()
-    orderstatus = models.SmallIntegerField()
+    sumprice = models.PositiveBigIntegerField(default=0)
+    orderstatus = models.SmallIntegerField(default=0)
 
 
 class Basket(models.Model):

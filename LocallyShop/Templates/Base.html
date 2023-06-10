@@ -21,7 +21,7 @@ background: linear-gradient(to right bottom, rgb(105, 147, 231), rgb(21, 120, 21
 
 <body>
   {% csrf_token %}
-    <div class=" shadow-lg " style="background-color: #309cdf;" >
+    <div class=" shadow-lg " style="background-color: #0d27d2;" >
         <nav class="navbar navbar-expand-lg navbar-dark container"rgb(139, 139, 255)>
           <div class="container-fluid" style="font-family:Titr;">
             <a class="navbar-brand text-white"  href="#" style="width: 20px;">فروشگاه محصولات بومی و محلی</a>
@@ -37,7 +37,7 @@ background: linear-gradient(to right bottom, rgb(105, 147, 231), rgb(21, 120, 21
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     دسته بندی
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #309cdf ;
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #0d27d2 ;
                   ;">
                   {% for i in my_object %}
                     <li><a class="dropdown-item text-white" href="#">{{ i.Title }}</a></li>
@@ -49,7 +49,7 @@ background: linear-gradient(to right bottom, rgb(105, 147, 231), rgb(21, 120, 21
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{request.user.username}}
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #309cdf;;
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #0d27d2;;
                   ;">
                     <li><a class="dropdown-item text-white" href="{% url 'Profile' %}">پروفایل</a></li>
                     <li><a class="dropdown-item text-white" href="#">سفارشات</a></li>
@@ -82,7 +82,7 @@ background: linear-gradient(to right bottom, rgb(105, 147, 231), rgb(21, 120, 21
       
       {% endblock %}
 
-    <footer class="text-center" style="background-color: #309cdf;">
+    <footer class="text-center" style="background-color: #0d27d2;">
         <div class="container text-white py-4 py-lg-5 py-sm-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-light" style="text-decoration: none;" href="#">درباره ما</a></li>
