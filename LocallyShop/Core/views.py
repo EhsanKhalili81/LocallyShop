@@ -17,10 +17,14 @@ def AcLogin(request):
 def AcRegister(request):
     return render(request,'Register.html')
 
-def Products(request):
-    pr=Product.objects.all()
-    return render(request,'Product.html',{'pr':pr})
+# def Products(request):
+#     pr=Product.objects.all()
+#     return render(request,'Product.html',{'pr':pr})
 
 def ProductDetail(request,proid):
     pr=Product.objects.get(pk=proid)
     return render(request,'ProductDetail.html',{'pr':pr})
+
+def Showproduct(request,ctid):
+    pr=Product.objects.filter(category=ctid)
+    return render(request,'Product.html',{'pr':pr})

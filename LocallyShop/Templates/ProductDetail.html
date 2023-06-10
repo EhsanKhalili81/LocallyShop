@@ -14,7 +14,7 @@
             <h6 class="card-title"> توضیحات : {{ pr.Description }}</h6>
             <p class="card-text"> قیمت : {{ pr.Price }} ریال</p>
             <h6 class="card-text">فروشنده: {{ pr.User }} </h6>
-            <a href="#" class="btn btn-primary" style="font-size:large;">اضافه به سبد خرید</a>
+            <a href="{% url 'AddtoCart' pr.id %}" class="btn btn-primary" style="font-size:large;">اضافه به سبد خرید</a>
           </div>
         </div>
       </div>

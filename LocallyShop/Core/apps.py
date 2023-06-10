@@ -10,3 +10,4 @@ class CoreConfig(AppConfig):
 def some_model_object(request):
     from .models import Category
     return {'my_object': Category.objects.all()}
+
