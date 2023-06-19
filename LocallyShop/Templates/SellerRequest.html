@@ -1,0 +1,19 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+{% csrf_token %}
+   <div class="row justify-content-center m-5">
+    <div class="col-md-6 col-sm-10 ">
+        <section class="shadow contact-clean ">
+            <form class="  rounded border-secondary shadow-lg p-5" method="post" style="background: rgb(255, 255, 255);">
+                <h2 class="text-center pb-2">درخواست فروشندگی</h2>
+                <div class="form-group mb-3"><input class="form-control" type="text" name="name" placeholder="نام محل کار" style="margin-bottom: 15px;text-align: right;"><input class="form-control" type="text" placeholder="شماره محل کار" style="text-align: right;" name="tel"></div>
+                <div class="form-group mb-3"><input class="form-control" type="text" name="kodeposti" placeholder="کد پستی محل" inputmode="tel" style="text-align: right;"></div>
+                <div class="form-group mb-3"><textarea class="form-control" name="address" placeholder="آدرس" rows="14" style="text-align: right;margin-bottom: 16px;"></textarea><textarea class="form-control" name="message" placeholder="خلاصه ای از نوع شغل" rows="14" style="text-align: right;"></textarea></div>
+                <div class="form-group mb-3" style="text-align: center;"><button class="btn btn-dark" data-bss-hover-animate="pulse" type="submit">ارسال</button></div>
+            </form>
+        </section>
+    
+    </div>
+   </div>
+    {% endblock %}

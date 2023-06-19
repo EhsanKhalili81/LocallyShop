@@ -2,24 +2,39 @@
 
 {% block content %}
 {% csrf_token %}
-<div class="row text-center container-fluid pt-5 justify-content-center ms-0" style="background-color: rgb(86, 171, 255);">
-    {% for p in pr %}
-        <div class="card m-3" style="width: 22rem;padding-right: unset;background-color: rgb(234, 212, 255);">
-            <div style="width: 350px; height: 250px;">
-                <img src="{{ p.Image.url }}" class="card-img-top h-100 w-100" alt="...">
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+          <div class="row justify-content-center">
+            {% for p in pr %}
+            <div class="col-md-8 col-lg-6 col-xl-4 mt-5">
+              <div class="card text-black" style="height: 550px;">
+                <i class="fab  fa-lg px-3"></i>
+                <img src="{{ p.Image.url }}"class="card-img-top h-50" alt="Apple Computer" />
+                <div class="card-body">
+                  <div class="text-center">
+                    <h5 class="card-title">{{ p.Title }}</h5>
+                  </div>
+                  <div class="pt-3">
+                    <div class="d-flex justify-content-between">
+                      <span>فروشنده :</span><span>{{ p.User }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                    <span>قیمت :</span><span>{{ p.Price }} ریال</span>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-start pb-3 ">
+                    <span>توضیحات :</span><span>{{ p.Description }}</span>
+                  </div>
+                    <div class="text-center text-light "><a href="{% url 'ProductDetail' p.id %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">اضافه به سبد خرید</a></div>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ p.Title }}</h5>
-              <p class="card-text"> قیمت : {{ p.Price }} ریال</p>
-              <h6 class="card-text">فروشنده: {{ p.User }} </h6>
-              <div class="text-center mt-3"><a href="{% url 'ProductDetail' p.id %}" class="btn btn-primary sharp rounded-0 w-100 ms-1" type="button">نمایش محصول</a></div>
-            </div>
+            {% endfor %}
           </div>
-    
-      {% endfor %}
-</div>
-
-
+        </div>
+      </section>
 
 
 {% endblock %}

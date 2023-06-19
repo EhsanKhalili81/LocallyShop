@@ -11,7 +11,7 @@ class ShopConfig(AppConfig):
 def basketcounter(request):
     from Shop.models import Order,Basket
     bs=""
-    if request.user.id:
+    if request.user.id and request.user.is_staff == False:
         order=Order.objects.get(user=request.user,orderstatus=0)
         bs=Basket.objects.filter(orderid=order)
     return {'counter': len(bs)}
