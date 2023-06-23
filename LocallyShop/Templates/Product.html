@@ -8,7 +8,7 @@
           <div class="row justify-content-center">
             {% for p in pr %}
             <div class="col-md-8 col-lg-6 col-xl-4 mt-5">
-              <div class="card text-black" style="height: 550px;">
+              <div class="card text-black" style="height: 500x;">
                 <i class="fab  fa-lg px-3"></i>
                 <img src="{{ p.Image.url }}"class="card-img-top h-50" alt="Apple Computer" />
                 <div class="card-body">
@@ -24,10 +24,7 @@
                     <span>قیمت :</span><span>{{ p.Price }} ریال</span>
                   </div>
                   <hr>
-                  <div class="d-flex justify-content-start pb-3 ">
-                    <span>توضیحات :</span><span>{{ p.Description }}</span>
-                  </div>
-                    <div class="text-center text-light "><a href="{% url 'ProductDetail' p.id %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">اضافه به سبد خرید</a></div>
+                    <div class="text-center text-light "><a href="{% url 'ProductDetail' p.id %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصول</a></div>
                 </div>
               </div>
             </div>

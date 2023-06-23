@@ -7,7 +7,7 @@ class CoreConfig(AppConfig):
 
 
 
-def some_model_object(request):
+def category(request):
     from .models import Category
-    return {'my_object': Category.objects.all()}
+    return {'category': Category.objects.all()}
 

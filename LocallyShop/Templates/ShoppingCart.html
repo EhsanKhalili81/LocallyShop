@@ -3,7 +3,7 @@
 {% block content %}
 {% csrf_token %}
 
-<section class="vh-100" style="background-color: #8dadff;">
+<section class="h-100 py-5" style="background-color: #c4cee7;">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
@@ -60,6 +60,7 @@
                   </div>
                 </div>
               </div>
+              <hr>
               {% endfor %}
             </div>
           </div>
@@ -78,7 +79,7 @@
   
           <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-light btn-lg me-2">ادامه خرید</button>
-            <button type="button" class="btn btn-primary btn-lg">ثبت سفارش</button>
+            <button type="button" class="btn btn-dark btn-lg"><a style="text-decoration: none;color: white;" href="{% url 'FinalOrder' %}">ثبت سفارش</a></button>
           </div>
   
         </div>

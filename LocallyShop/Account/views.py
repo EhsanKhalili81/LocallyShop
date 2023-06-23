@@ -56,6 +56,8 @@ def Profile(request):
         user_completed.save()
         userinfo1=Userinformation.objects.filter(user=request.user)
     return render(request,'Profile.html',{'userinfo':userinfo1})
+
+
 def ProfileEdit(request):
      userinformation=Userinformation.objects.get(user=request.user)
      print("Test 1 :")

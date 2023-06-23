@@ -1,0 +1,58 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="bootstrap_datatables">
+    <div class="container py-5">
+      <header class="text-center text-black">
+        <h1 class="display-4">ثبت سفارش</h1>
+      </header>
+      <div class="row py-5">
+        <div class="col-lg-10 mx-auto">
+          <div class="card rounded shadow border-0">
+            <div class="card-body p-5 bg-white rounded">
+              <div class="table-responsive">
+                <table id="example" style="width: 100%;" class="table table-striped table-bordered">
+                  <thead  style="text-align: center;">
+                    <tr>
+                      <td colspan="2">کد پستی : {{userinfo.kodeposti}}</td>
+                      <td colspan="2">شماره همراه : {{userinfo.tel}}</td>
+                    </tr>
+                  </thead>
+                  <thead style="text-align: right;">
+                    <tr>
+                      <td colspan="4">آدرس :{{userinfo.address}}</td>
+                    </tr>
+                  </tbody>
+
+                  <thead  style="text-align: center;">
+                    <tr>
+                      <td>سفارش : {{order.id}}</td>
+                      <td colspan="2">جمع کل : {{order.sumprice}} ریال</td>
+                      <td  colspan="2">پرداخت درب منزل</td>
+                    </tr>
+                  </thead>
+                </table>
+                <button type="button" class="btn btn-dark w-100 mt-3"><a style="text-decoration: none;color: white;" href="{% url 'SubmitOrder' %}">ثبت سفارش</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

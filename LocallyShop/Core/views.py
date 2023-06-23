@@ -2,14 +2,20 @@ from django.shortcuts import render
 from .models import Category
 from Admin.models import Slider,Card
 from Seller.models import Product
+from Shop.models import Order
 
 # Create your views here.
 
 def Home(request):
+    order=Order.objects.filter(user=request.user,orderstatus=0)
+    if order:
+        pass
+    else:
+        ordercreate=Order(user=request.user,orderstatus=0,sumprice=0)
+        ordercreate.save()
     slider=Slider.objects.all()
-    ct=Category.objects.all()
     card=Card.objects.all()
-    return render(request,'index.html',{'slider':slider,'ct':ct,'card':card})
+    return render(request,'index.html',{'slider':slider,'card':card})
 
 def AcLogin(request):
     return render(request,'Login.html')

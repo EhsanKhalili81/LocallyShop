@@ -2,7 +2,9 @@ from django.shortcuts import render,redirect
 from .models import Order,Basket
 from Seller.models import Product 
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.models import User
+from Account.models import Userinformation
+from django.contrib import messages
 # Create your views here.
 def Cart(request):
     order=Order.objects.get(user=request.user,orderstatus=0)
@@ -29,9 +31,9 @@ def addtocart(request,proid):
         order_completed.save()
         order1=Order.objects.get(user=request.user,orderstatus=0)
     product=Product.objects.get(pk=proid)
-    basket=Basket.objects.filter(productid=product)
+    basket=Basket.objects.filter(orderid=order1,productid=product)
     if basket:
-        basket=Basket.objects.get(productid=product)
+        basket=Basket.objects.get(orderid=order1,productid=product)
         c=basket.count + 1
         p=product.Price*c
         bs=Basket(id=basket.id,orderid=order1,productid=product,count=c,price=p)
@@ -39,9 +41,9 @@ def addtocart(request,proid):
         p=product.Price*c
         bs=Basket(orderid=order1,productid=product,count=1,price=p)    
     bs.save()
-    # t = request.META.get('HTTP_REFERER')
-    return render(request,'ProductDetail.html',{'pr':product})
-    # return redirect('ProductDetail',pr=product)
+    # return render(request,'ProductDetail.html',{'pr':product})
+   # t = request.META.get('HTTP_REFERER')
+    return redirect('Cart')
 
 
 def rmproduct(request,proid):
@@ -49,3 +51,26 @@ def rmproduct(request,proid):
     bs=Basket.objects.get(orderid=order,productid=proid)
     bs.delete()
     return redirect('Cart')
+
+def Showorders(request):
+    order=Order.objects.filter(user=request.user)
+    pr=Product.objects.all()
+    bs=Basket.objects.all()
+    return render(request,'OrderDetails.html',{'order':order,'bs':bs,'pr':pr})
+
+
+def FinalOrder(request):
+    user=User.objects.get(pk=request.user.id)
+    userinfo=Userinformation.objects.get(user=user)
+    order=Order.objects.get(user=user,orderstatus=0)
+    return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order})
+
+def SubmitOrder(request):
+    order=Order.objects.get(user=request.user,orderstatus=0)
+    ordercomplete=Order(id=order.id,orderstatus=1,user=request.user,sumprice=order.sumprice)
+    ordercomplete.save()
+    if ordercomplete:
+        messages.success(request,'ثبت سفارش با موفقیت انجام شد')
+    else:
+        messages.warning(request,'ثبت سفارش انجام نشد')
+    return redirect('Home')

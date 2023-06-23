@@ -2,23 +2,48 @@
 
 {% block content %}
 
-<div class="row container-fluid text-center pt-5 ms-0 justify-content-center" >
-      <div class="col-2"></div>
-      <div class="col-7">
-        <div class="card m-3" style="width: 50rem;padding-right: unset;">
-          <div style="width: 800px; height: 400px;" class="">
-              <img src="{{ pr.Image.url }}" class="card-img-top h-100 w-100 " alt="...">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ pr.Title }}</h5>
-            <h6 class="card-title"> توضیحات : {{ pr.Description }}</h6>
-            <p class="card-text"> قیمت : {{ pr.Price }} ریال</p>
-            <h6 class="card-text">فروشنده: {{ pr.User }} </h6>
-            <a href="{% url 'AddtoCart' pr.id %}" class="btn btn-primary" style="font-size:large;">اضافه به سبد خرید</a>
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+          <div class="row justify-content-start">
+            <div class="col-md-8 col-lg-6 col-xl-4 mt-5">
+              <div class="card text-black" style="height: 450px;">
+                <i class="fab  fa-lg px-3"></i>
+                <img src="{{ pr.Image.url }}"class="card-img-top h-50" alt="Apple Computer" />
+                <div class="card-body">
+                  <div class="text-center">
+                    <h5 class="card-title">{{ pr.Title }}</h5>
+                  </div>
+                  <div class="pt-3">
+                    <div class="d-flex justify-content-between">
+                      <span>فروشنده :</span><span>{{ pr.User }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                    <span>قیمت :</span><span>{{ pr.Price }} ریال</span>
+                  </div>
+                  <hr>
+
+                    <div class="text-center text-light "><a href="{% url 'AddtoCart' pr.id %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">اضافه به سبد خرید</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-8 mt-5">
+              <div class="card card-body h-100">
+                <div class="d-flex justify-content-start pb-3 ">
+                  <p>توضیحات : <span>{{ pr.Description }}</span> </p>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-start pb-3 ">
+                  <span>اندازه یا وزن : <span>{{ pr.Size }}</span></span>
+                </div>
+                <hr>
+                <div class="d-flex row justify-content-center pb-3 ">
+                  <div class="col-4"><img class="w-100" src="{{ pr.Image.url }}" alt=""></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-2"></div>
-</div>
+      </section>
 
 {% endblock %}

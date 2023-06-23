@@ -1,0 +1,66 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+
+<div class="bootstrap_datatables">
+    <div class="container py-5">
+      <header class="text-center text-black">
+        <h1 class="display-4">جزئیات سفارشات</h1>
+      </header>
+      {% for ord in order %}
+      {% if ord.orderstatus != 0 %}
+      <div class="row py-5">
+        <div class="col-lg-10 mx-auto">
+          <div class="card rounded shadow border-0">
+            <div class="card-body p-5 bg-white rounded">
+              <div class="table-responsive">
+                <table id="example" style="width: 100%;" class="table table-striped table-bordered">
+                  <thead  style="text-align: center;">
+                    <tr>
+                      <th>تصویر</th>
+                      <th>نام</th>
+                      <th>تعداد</th>
+                      <th>قیمت</th>
+                      <th>جمع قیمت</th>
+                    </tr>
+                  </thead>
+                  {% for b in bs %}
+                  {% if b.orderid == ord %}
+                  {% for p in pr%}
+                  {% if b.productid == p %}
+                  <tbody style="text-align: center;">
+                    <tr>
+                      <td class="w-25"><img class="col-8 col-xl-3 col-lg-3 col-md-3 col-sm-4" src="{{ p.Image.url }}"></td>
+                      <td class="">{{ p.Title }}</td>
+                      <td>{{ b.count }}</td>
+                      <td>{{ p.Price }}</td>
+                      <td>{{ b.price }}</td>
+                    </tr>
+                  </tbody>
+                  {% endif %}
+                  {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+                  <thead  style="text-align: center;">
+                    <tr>
+                      <td>سفارش : {{ord.id}}</td>
+                      <td colspan="2">جمع کل : {{ord.sumprice}} ریال</td>
+                      {% if ord.orderstatus == 1 %}
+                      <td  colspan="2">وضعیت : در حال پردازش ...</td>
+                      {% else %}
+                      <td  colspan="2">وضعیت : تحویل داده شد</td>
+                      {% endif %}
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}

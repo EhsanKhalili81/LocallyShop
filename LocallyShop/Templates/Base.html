@@ -56,7 +56,7 @@ background: linear-gradient(to right bottom, rgb(0, 0, 0), rgb(31, 38, 45))
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #000000 ;
                   ;">
-                  {% for i in my_object %}
+                  {% for i in category %}
                     <li><a class="dropdown-item text-white" href="{% url 'Products' i.id %}">{{ i.Title }}</a></li>
                     {% endfor %}
                   </ul>
@@ -69,7 +69,7 @@ background: linear-gradient(to right bottom, rgb(0, 0, 0), rgb(31, 38, 45))
                   <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #000000;;
                   ;">
                     <li><a class="dropdown-item text-white" href="{% url 'Profile' %}">پروفایل</a></li>
-                    <li><a class="dropdown-item text-white" href="#">سفارشات</a></li>
+                    <li><a class="dropdown-item text-white" href="{% url 'Showorders' %}">سفارشات</a></li>
                     <li><a class="dropdown-item text-white" href="{% url 'SellerRequest' %}">درخواست فروشندگی</a></li>
                   </ul>
                 </li>
