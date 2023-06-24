@@ -24,6 +24,7 @@ urlpatterns = [
     path('',include('Core.urls')),
     path('',include('Shop.urls')),
     path('',include('Seller.urls')),
+    path('admin1/',include('Admin.urls')),
 
 ]
 if settings.DEBUG:
