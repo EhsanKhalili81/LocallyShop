@@ -7,40 +7,46 @@ from Account.models import Userinformation
 from django.contrib import messages
 # Create your views here.
 def Cart(request):
-    order=Order.objects.get(user=request.user,orderstatus=0)
-    bs=Basket.objects.filter(orderid=order).values()
-    pr=[]
-    sumprice1=0
-    for i in list(bs):
-        pr.append(Product.objects.get(pk=i['productid_id']))
-        sumprice1 += i['price']
-    or1=Order(id=order.id,sumprice=sumprice1,user=request.user)
-    or1.save()
-    if or1 :
+    if request.user.id:
         order=Order.objects.get(user=request.user,orderstatus=0)
+        bs=Basket.objects.filter(orderid=order).values()
+        pr=[]
+        sumprice1=0
+        for i in list(bs):
+            pr.append(Product.objects.get(pk=i['productid_id']))
+            sumprice1 += i['price']
+        or1=Order(id=order.id,sumprice=sumprice1,user=request.user)
+        or1.save()
+        if or1 :
+            order=Order.objects.get(user=request.user,orderstatus=0)
+    else:
+        return redirect('Home')
     return render(request,'ShoppingCart.html',{'basket':bs,'pr':pr,'order':order})
 
 
 def addtocart(request,proid):
-    c=1
-    order=Order.objects.filter(user=request.user,orderstatus=0)
-    if order:
-        order1=Order.objects.get(user=request.user,orderstatus=0)
+    if request.user.id:
+        c=1
+        order=Order.objects.filter(user=request.user,orderstatus=0)
+        if order:
+            order1=Order.objects.get(user=request.user,orderstatus=0)
+        else:
+            order_completed=Order(user=request.user)
+            order_completed.save()
+            order1=Order.objects.get(user=request.user,orderstatus=0)
+        product=Product.objects.get(pk=proid)
+        basket=Basket.objects.filter(orderid=order1,productid=product)
+        if basket:
+            basket=Basket.objects.get(orderid=order1,productid=product)
+            c=basket.count + 1
+            p=product.Price*c
+            bs=Basket(id=basket.id,orderid=order1,productid=product,count=c,price=p)
+        else:
+            p=product.Price*c
+            bs=Basket(orderid=order1,productid=product,count=1,price=p)    
+        bs.save()
     else:
-        order_completed=Order(user=request.user)
-        order_completed.save()
-        order1=Order.objects.get(user=request.user,orderstatus=0)
-    product=Product.objects.get(pk=proid)
-    basket=Basket.objects.filter(orderid=order1,productid=product)
-    if basket:
-        basket=Basket.objects.get(orderid=order1,productid=product)
-        c=basket.count + 1
-        p=product.Price*c
-        bs=Basket(id=basket.id,orderid=order1,productid=product,count=c,price=p)
-    else:
-        p=product.Price*c
-        bs=Basket(orderid=order1,productid=product,count=1,price=p)    
-    bs.save()
+        messages.warning(request,'لطفا اول به حساب کاربری خود وارد شوید')
     # return render(request,'ProductDetail.html',{'pr':product})
    # t = request.META.get('HTTP_REFERER')
     return redirect('Cart')

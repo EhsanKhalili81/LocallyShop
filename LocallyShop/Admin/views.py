@@ -31,7 +31,7 @@ def rmuser(request,iduser):
     user_deleted=User.objects.get(pk=iduser)
     user_deleted.delete()
     messages.success(request,'حذف با موفقیت انجام شد') 
-    return redirect('Homeadmin')
+    return redirect('admin1/Home')
 
 def EditUser(request):
     return render(request,'Admin/EditUser.html')

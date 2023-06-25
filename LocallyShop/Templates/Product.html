@@ -20,8 +20,9 @@
                       <span>فروشنده :</span><span>{{ p.User }}</span>
                     </div>
                   </div>
+                  {% load humanize %}
                   <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                    <span>قیمت :</span><span>{{ p.Price }} ریال</span>
+                    <span>قیمت :</span><span>{{ p.Price|intcomma   }} ریال</span>
                   </div>
                   <hr>
                     <div class="text-center text-light "><a href="{% url 'ProductDetail' p.id %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصول</a></div>

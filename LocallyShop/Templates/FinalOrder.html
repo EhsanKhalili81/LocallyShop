@@ -4,7 +4,7 @@
 
 
 
-
+{% load humanize %}
 <div class="bootstrap_datatables">
     <div class="container py-5">
       <header class="text-center text-black">
@@ -31,7 +31,7 @@
                   <thead  style="text-align: center;">
                     <tr>
                       <td>سفارش : {{order.id}}</td>
-                      <td colspan="2">جمع کل : {{order.sumprice}} ریال</td>
+                      <td colspan="2">جمع کل : {{order.sumprice|intcomma}} ریال</td>
                       <td  colspan="2">پرداخت درب منزل</td>
                     </tr>
                   </thead>
