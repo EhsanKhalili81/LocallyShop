@@ -7,12 +7,13 @@ from Shop.models import Order
 # Create your views here.
 
 def Home(request):
-    order=Order.objects.filter(user=request.user,orderstatus=0)
-    if order:
-        pass
-    else:
-        ordercreate=Order(user=request.user,orderstatus=0,sumprice=0)
-        ordercreate.save()
+    if request.user.id:
+        order=Order.objects.filter(user=request.user,orderstatus=0)
+        if order:
+            pass
+        else:
+            ordercreate=Order(user=request.user,orderstatus=0,sumprice=0)
+            ordercreate.save()
     slider=Slider.objects.all()
     card=Card.objects.all()
     return render(request,'index.html',{'slider':slider,'card':card})
