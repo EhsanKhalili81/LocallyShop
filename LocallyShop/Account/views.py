@@ -34,9 +34,13 @@ def LoginUser(request):
         Password=request.POST['password']
         Userinfo=authenticate(request,username=Username,password=Password)
         if Userinfo is not None:
+            is_admin=User.objects.get(username=Userinfo)
             messages.success(request,'ورود با موفقیت انجام شد ')
             login(request,Userinfo)
-            return redirect ('Home') 
+            if is_admin.is_staff :
+                return redirect('admin1/Home')
+            else:
+                return redirect ('Home') 
         else:
             messages.warning(request,'رمز ورود یا نام کاربری اشتباه است ')
             return redirect('AcLogin')
@@ -60,8 +64,6 @@ def Profile(request):
 
 def ProfileEdit(request):
      userinformation=Userinformation.objects.get(user=request.user)
-     print("Test 1 :")
-     print(userinformation)
      if request.method == 'POST':
         tel = request.POST['tel']
         kodeposti = request.POST['kodeposti']
@@ -70,7 +72,6 @@ def ProfileEdit(request):
         lastname = request.POST['lname']
         user_info1 = Userinformation(user=request.user,tel=tel,kodeposti=kodeposti,address=address)
         user_info2=User.objects.get(pk=request.user.id)
-        print(user_info2)
         user_info2.first_name=firstname
         user_info2.last_name=lastname
         user_info2.save()

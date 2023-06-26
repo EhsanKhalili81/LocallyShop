@@ -1,0 +1,100 @@
+{% extends 'Admin/AdminBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+
+
+
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>افزودن کاربر</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12" >
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 style="text-align: center;">فرم</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form " method="post" action="{% url 'Register' %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="card-body col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">نام</label>
+                      <input type="text" class="form-control" name="name" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">نام خانوادگی</label>
+                      <input type="text" class="form-control" name="lname" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">کدپستی</label>
+                      <input type="text" class="form-control" name="kodeposti" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">آدرس</label>
+                    <input type="text" class="form-control" name="address" placeholder="">
+                </div>
+                  </div>
+                  <div class="card-body col-md-6">
+                    <div class="form-group">
+                      <label>نام کاربری</label>
+                      <input type="text" class="form-control" name="username" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">گذرواژه</label>
+                      <input type="password" class="form-control" name="password" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">ایمیل</label>
+                      <input type="email" class="form-control" name="email" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">شماره همراه</label>
+                    <input type="text" class="form-control" name="tel" placeholder="">
+                </div>
+                  </div>
+                </div>
+                <div class="row" style="justify-content: center;margin-bottom: 25px;margin-right: 125px;">
+                    <div class="form-check  col-4 " >
+                        <input type="radio" name="usertype" class="form-check-input" id="exampleCheck1" value="1">
+                        <label class="form-check-label" >کاربر عادی</label>
+                      </div>
+                      <div class="form-check  col-4" >
+                        <input type="radio" name="usertype" class="form-check-input" id="exampleCheck1" value="2">
+                        <label class="form-check-label">فروشنده</label>
+                      </div>
+                      <div class="form-check  col-4">
+                        <input type="radio" name="usertype" class="form-check-input" id="exampleCheck1" value="3">
+                        <label class="form-check-label">ادمین</label>
+                      </div>
+                </div>
+                <div class="card-footer ">
+                  <button type="submit" class="btn btn-primary">ثبت</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  {% endblock%}

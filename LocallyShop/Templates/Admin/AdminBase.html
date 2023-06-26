@@ -44,10 +44,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'Home' %}" class="nav-link">صفحه اصلی</a>
+        <a href="{% url 'admin1/Home' %}" class="nav-link">صفحه اصلی</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">بازگشت به سایت اصلی</a>
+        <a href="{% url 'Home' %}" class="nav-link">بازگشت به سایت اصلی</a>
       </li>
     </ul>
   </nav>
@@ -102,7 +102,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{% url 'AddUser' %}" class="nav-link">
                   <i class="fa fa-user-plus nav-icon"></i>
                   <p>افزودن کاربر</p>
                 </a>

@@ -2,6 +2,7 @@
 
 {% block main %}
 {% csrf_token %}
+{% load humanize %}
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,7 +26,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h4>{{order}}</h4>
 
                 <p>تعداد سفارشات</p>
               </div>
@@ -39,7 +40,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h4>{{seller}} نفر</h4>
 
                 <p>تعداد فروشندگان</p>
               </div>
@@ -53,7 +54,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h4>{{user}} نفر</h4>
 
                 <p>تعداد کاربران</p>
               </div>
@@ -67,9 +68,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h4>{{gardesh|intcomma}} ریال</h4>
 
-                <p>گردش مالی</p>
+                <p>میزان فروش</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
