@@ -4,6 +4,8 @@ from Account.models import Userinformation
 from Shop.models import Order
 from django.contrib import messages
 from django.db.models import Q
+from Seller.models import Product
+from Core.models import Category
 # Create your views here.
 def Homeadmin(request):
     if request.user.is_staff :
@@ -115,3 +117,66 @@ def RegisterUser(request):
         else:
             messages.error(request,'ثبت نام متاسفانه انجام نشد نام کاربری تکراری است')
             return redirect ('admin1/Home')  
+
+def products(request):
+    pr=Product.objects.all()
+    messages.success(request,'محصولات')
+    return render(request,'Admin/Products.html',{'pr':pr})
+
+def rmproduct(request,idpr):
+    pr_deleted=Product.objects.get(pk=idpr)
+    pr_deleted.delete()
+    messages.success(request,'حذف با موفقیت انجام شد') 
+    return redirect('admin1/Home')
+
+def Addpr(request):
+    seller=[]
+    user0=Userinformation.objects.filter(is_seller=True).values()
+    for i in user0:
+        user1=User.objects.get(id=i['user_id'])
+        seller.append(user1)
+    return render(request,'Admin/AddProducts.html',{'seller':seller})
+
+def addproducts(request):
+    if request.method=='POST':
+        name=request.POST['name']
+        description=request.POST['description']
+        image =request.FILES['image']
+        user=request.POST['seller']
+        seller=User.objects.get(pk=user)
+        cty=request.POST['category']
+        ct=Category.objects.get(pk=cty)
+        price=request.POST['price']
+        size=request.POST['size']
+        qty=request.POST['qty']
+        qtysell=request.POST['qtysell']
+        pr=Product(User=seller,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Qtysell=qtysell,Image=image)
+        pr.save()
+    if pr :
+        messages.success(request,'محصول با موفقیت اضافه شد .')
+    else :
+        messages.warning(request,'متاسفانه محصول اضافه نشد .')       
+    return redirect('admin1/Home')
+def editpr(request,idpr):
+    pr=Product.objects.get(pk=idpr)
+    return render(request,'Admin/EditProducts.html',{'pr':pr})
+
+def editproduct(requset,idpr):
+    pro=Product.objects.get(pk=idpr)
+    if requset.method=='POST':
+        name=requset.POST['name']
+        description=requset.POST['description']
+        image =requset.FILES.get('image',pro.Image)
+        cty=requset.POST['category']
+        ct=Category.objects.get(pk=cty)
+        price=requset.POST['price']
+        size=requset.POST['size']
+        qty=requset.POST['qty']
+        qtysell=requset.POST['qtysell']
+        pr=Product(pk=idpr,User=pro.User,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Qtysell=qtysell,Image=image)
+        pr.save()
+    if pr :
+        messages.success(requset,'محصول با موفقیت ویرایش شد .')
+    else :
+        messages.warning(requset,'متاسفانه محصول ویرایش نشد .')
+    return redirect('admin1/Home')

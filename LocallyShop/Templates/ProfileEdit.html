@@ -14,18 +14,18 @@
                 {% csrf_token %}
                 <div class="row mb-3">
                     {% if request.user.first_name%}
-                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" value="{{request.user.first_name}}" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
-                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" value="{{request.user.last_name}}" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input required class="form-control form-control-user" type="text" value="{{request.user.first_name}}" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input required class="form-control form-control-user" type="text" value="{{request.user.last_name}}" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
                     {% else %}
-                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
-                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input required class="form-control form-control-user" type="text" id="text" placeholder="نام" required="" name="fname" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input required class="form-control form-control-user" type="text" placeholder="نام خانوادگی" required="" name="lname" style="text-align: center;"></div>
                     {% endif %}
                 </div>
                 <div class="row mb-3">
-                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"{% if userinformation.tel is not None%} value="{{userinformation.tel}}" {% else %} value="" {% endif %} type="tel" id="text" placeholder="شماره تلفن" required="" name="tel" style="text-align: center;"></div>
-                    <div class="col-sm-6"><input class="form-control form-control-user" type="tel" {% if userinformation.kodeposti is not None%} value="{{userinformation.kodeposti}}" {% else %} value="" {% endif %} id="text" placeholder="کد پستی" required="" name="kodeposti" style="text-align: center;"></div>
+                    <div class="col-sm-6 mb-3 mb-sm-0"><input required class="form-control form-control-user"{% if userinformation.tel is not None%} value="{{userinformation.tel}}" {% else %} value="" {% endif %} type="tel" id="text" placeholder="شماره تلفن" required="" name="tel" style="text-align: center;"></div>
+                    <div class="col-sm-6"><input required class="form-control form-control-user" type="tel" {% if userinformation.kodeposti is not None%} value="{{userinformation.kodeposti}}" {% else %} value="" {% endif %} id="text" placeholder="کد پستی" required="" name="kodeposti" style="text-align: center;"></div>
                 </div>
-                <div class="mb-3"><input class="form-control form-control-user" type="tel" {% if userinformation.address is not None%} value="{{userinformation.address}}" {% else %} value="" {% endif %}  placeholder="آدرس" required="" name="address" style="text-align: center;"></div>
+                <div class="mb-3"><input required class="form-control form-control-user" type="tel" {% if userinformation.address is not None%} value="{{userinformation.address}}" {% else %} value="" {% endif %}  placeholder="آدرس" required="" name="address" style="text-align: center;"></div>
                 <div class="row mb-3">
                     <p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
                     <p id="passwordErrorMsg" class="text-danger" style="display: none;">Paragraph</p>

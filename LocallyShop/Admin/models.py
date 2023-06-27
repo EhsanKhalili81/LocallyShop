@@ -15,7 +15,6 @@ def file_path(instance, filename):
 
 
 class Slider(models.Model):
-    Title = models.CharField(max_length=100)
     Description = models.CharField(max_length=255)
     Image = models.ImageField(upload_to=filepath,null=True,blank=True)
 
