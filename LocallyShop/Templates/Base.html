@@ -73,7 +73,13 @@ background: linear-gradient(to right bottom, rgb(0, 0, 0), rgb(31, 38, 45))
                   ;">
                     <li><a class="dropdown-item text-white" href="{% url 'Profile' %}">پروفایل</a></li>
                     <li><a class="dropdown-item text-white" href="{% url 'Showorders' %}">سفارشات</a></li>
+                    {% if request.user.is_staff %}
+                    <li><a class="dropdown-item text-white" href="{% url 'admin1/Home' %}">پنل ادمین</a></li>
+                    {% elif userinfo.is_seller %}
+                    <li><a class="dropdown-item text-white" href="{% url 'Seller/Home' %}">پنل فروشندگی</a></li>
+                    {% else %}
                     <li><a class="dropdown-item text-white" href="{% url 'SellerRequest' %}">درخواست فروشندگی</a></li>
+                    {% endif %}
                   </ul>
                 </li>
                 <li class="nav-item">

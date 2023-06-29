@@ -1,0 +1,107 @@
+{% extends 'Admin/AdminBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+{% load humanize %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">عنوان صفحه</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>{{order}}</h4>
+
+                <p>تعداد سفارشات</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>{{seller}} نفر</h4>
+
+                <p>تعداد فروشندگان</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h4>{{user}} نفر</h4>
+
+                <p>تعداد کاربران</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h4>{{gardesh|intcomma}} ریال</h4>
+
+                <p>میزان فروش</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+      </div>
+    </section>
+    <hr>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="col-12" style="text-align: center;margin-top: 12.5%;"><h1>{{ message }}</h1></div>
+    {% endfor %}
+    {% else %}
+    <div class="col-12" style="text-align: center;margin-top: 12.5%;"><h1>به پنل فروشندگی خوش آمدید.</h1></div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1> </h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+

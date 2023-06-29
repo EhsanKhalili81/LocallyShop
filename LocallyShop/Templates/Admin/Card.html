@@ -1,0 +1,77 @@
+{% extends 'Admin/AdminBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+{% load humanize %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ message }} </h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Main content -->
+    <section class="content" style="text-align: center;">
+      <div class="row">
+        <div class="col-12 ">
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
+                <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <thead>
+                <tr role="row ">
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browser: activate to sort column ascending">آیدی اسلایدر</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">تصویر</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">عنوان</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">ویرایش</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in crd %}   
+                <tr role="row" class="odd">
+                  <td class="sorting_1">{{i.id}}</td>
+                  <td class="w-25"><img class="col-xl-9 col-lg-9 col-md-9 col-sm-4" src="{{ i.Image.url }}"></td>
+                  <td>{{i.Title}}</td>
+                  <td>
+                    <a href="{% url 'EditCard' i.id %}" style="color: black;">
+                      <svg style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                    </a> 
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+              </table></div></div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}

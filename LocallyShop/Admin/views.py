@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from Account.models import Userinformation
-from Shop.models import Order
+from Account.models import Userinformation,SellerRequest
+from Shop.models import Order,Basket
 from django.contrib import messages
 from django.db.models import Q
 from Seller.models import Product
 from Core.models import Category
+from .models import Slider,Card
 # Create your views here.
 def Homeadmin(request):
     if request.user.is_staff :
@@ -157,6 +158,7 @@ def addproducts(request):
     else :
         messages.warning(request,'متاسفانه محصول اضافه نشد .')       
     return redirect('admin1/Home')
+
 def editpr(request,idpr):
     pr=Product.objects.get(pk=idpr)
     return render(request,'Admin/EditProducts.html',{'pr':pr})
@@ -180,3 +182,126 @@ def editproduct(requset,idpr):
     else :
         messages.warning(requset,'متاسفانه محصول ویرایش نشد .')
     return redirect('admin1/Home')
+
+def Sliders(request):
+    slider=Slider.objects.all()
+    messages.success(request,'اسلایدر')
+    return render(request,'Admin/Slider.html',{'slider':slider})
+
+def EditSlider(requset,idsl):
+    slider=Slider.objects.get(pk=idsl)
+    return render(requset,'Admin/SliderEdit.html',{'slider':slider})
+
+def Editsl(request,idsl):
+    sl=Slider.objects.get(pk=idsl)
+    if request.method=='POST':
+        description=request.POST['description']
+        image =request.FILES.get('image',sl.Image)
+        slider=Slider(pk=idsl,Description=description,Image=image)
+        slider.save()
+    if slider :
+        messages.success(request,'اسلایدر با موفقیت ویرایش شد .')
+    else :
+        messages.warning(request,'متاسفانه اسلایدر ویرایش نشد .')
+    return redirect('admin1/Home')   
+
+def Cards(request):
+    crd=Card.objects.all()
+    messages.success(request,'کارت')
+    return render(request,'Admin/Card.html',{'crd':crd})
+
+def EditCard(requset,idcrd):
+    crd=Card.objects.get(pk=idcrd)
+    return render(requset,'Admin/EditCard.html',{'crd':crd})
+
+def Editcrd(request,idcrd):
+    cr=Card.objects.get(pk=idcrd)
+    if request.method=='POST':
+        title=request.POST['title']
+        image =request.FILES.get('image',cr.Image)
+        card=Card(pk=idcrd,Title=title,Image=image)
+        card.save()
+    if card :
+        messages.success(request,'کارت با موفقیت ویرایش شد .')
+    else :
+        messages.warning(request,'متاسفانه کارت ویرایش نشد .')
+    return redirect('admin1/Home')
+
+def SellerRQ(request):
+    rq=SellerRequest.objects.filter(status=False).values()
+    print(rq)
+    messages.success(request,'درخواست برای فروشندگی')
+    return render(request,'Admin/SellerRequest.html',{'rq':rq})
+
+def SRQAccept(request,iduser):
+    user=User.objects.get(pk=iduser)
+    userrq=SellerRequest.objects.get(user=user)
+    seller=Userinformation(user=user,is_seller=True)
+    seller.save()
+    rq=SellerRequest(pk=userrq.id,user=user,status=True,workspacetel=userrq.workspacetel,kodeposti=userrq.kodeposti)
+    rq.save()
+    messages.success(request,'عملیات موفقیت آمیز بود.')
+    return redirect('admin1/Home')
+
+def SRQDeclined(request,iduser):
+    rq=SellerRequest.objects.get(user=iduser)
+    rq.delete()
+    messages.success(request,'عملیات موفقیت آمیز بود.')
+    return redirect('admin1/Home')
+
+def OrderRecieve(request):
+    ord = Order.objects.filter(orderstatus=2)
+    messages.success(request,'سفارشات تحویل داده شده.')
+    return render(request,'Admin/OrderRecieve.html',{'order':ord})
+
+def Orders(request):
+    ord = Order.objects.filter(orderstatus=1)
+    messages.success(request,'سفارشات در حال پردازش .')
+    return render(request,'Admin/Orders.html',{'order':ord})
+
+def SubmitOrder(request,idorder):
+    user=Order.objects.get(pk=idorder)
+    ord=Order(pk=idorder,user=user.user,orderstatus=2)
+    ord.save()
+    messages.success(request,'عملیات موفقیت آمیز بود.')
+    return redirect('admin1/Home')
+
+def Categories(request):
+    messages.success(request,'دسته بندی ها')
+    return render(request,'Admin/Category.html')
+
+def Removect(request,idct):
+    ct=Category.objects.get(pk=idct)
+    ct.delete()
+    messages.success(request,'حذف با موفقیت انجام شد') 
+    return redirect('admin1/Home')
+
+def Addct(request):
+    return render(request,'Admin/Addct.html')
+
+def AddNewCt(request):
+    if request.method=='POST':
+        title=request.POST['title']
+        ct=Category(Title=title)
+        ct.save()
+    if ct :
+        messages.success(request,'دسته بندی با موفقیت اضافه شد .')
+    else :
+        messages.warning(request,'متاسفانه دسته بندی اضافه نشد .')   
+    return redirect('admin1/Home')
+
+def Editct(request,idct):
+    ct=Category.objects.get(pk=idct)
+    return render(request,'Admin/EditCt.html',{'ct':ct})
+
+def EditSelectedCt(request,idct):
+     if request.method=='POST':
+        title=request.POST['title']
+        ct=Category(pk=idct,Title=title)
+        ct.save()
+     if ct :
+        messages.success(request,'دسته بندی با موفقیت ویرایش شد .')
+     else :
+        messages.warning(request,'متاسفانه دسته بندی ویرایش نشد .')   
+     return redirect('admin1/Home')
+

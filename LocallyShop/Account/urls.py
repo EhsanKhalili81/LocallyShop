@@ -9,4 +9,6 @@ urlpatterns=[
     path('LogoutUser/',views.LogoutUser,name='LogoutUser'),
     path('Profile/',views.Profile,name='Profile'),
     path('ProfileEdit/',views.ProfileEdit,name='ProfileEdit'),
+    path('SellerRequest/',views.SellerRequestPage,name='SellerRequest'),
+    path('SellerRequestSend/',views.SellerRequestSend,name='SellerRequestSend'),
 ]

@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Userinformation
+from .models import Userinformation,SellerRequest
 
 
 def RegisterUser(request):
@@ -35,10 +35,13 @@ def LoginUser(request):
         Userinfo=authenticate(request,username=Username,password=Password)
         if Userinfo is not None:
             is_admin=User.objects.get(username=Userinfo)
+            seller=Userinformation.objects.get(user=is_admin)
             messages.success(request,'ورود با موفقیت انجام شد ')
             login(request,Userinfo)
             if is_admin.is_staff :
                 return redirect('admin1/Home')
+            elif seller.is_seller:
+                return redirect('Seller/Home')
             else:
                 return redirect ('Home') 
         else:
@@ -78,3 +81,23 @@ def ProfileEdit(request):
         user_info1.save()
         return redirect('Profile')
      return render(request,'ProfileEdit.html',{'userinformation':userinformation})
+
+def SellerRequestPage(request):
+    rq=SellerRequest.objects.filter(user=request.user)
+    return render(request,'SellerRequest.html',{'rq':rq})
+
+def SellerRequestSend(request):
+     if request.method == 'POST':
+        name = request.POST['name']
+        address = request.POST['address']
+        tel = request.POST['tel']
+        kodeposti = request.POST['kodeposti']
+        describe = request.POST['describe']
+        sellerrq = SellerRequest(user=request.user,workspacename=name,workspacetel=tel,kodeposti=kodeposti,address=address,describe=describe)
+        sellerrq.save()
+        if sellerrq:
+            messages.success(request,'درخواست شما با موفقیت ثبت شد .')
+            return redirect('Home')
+        else:
+            messages.warning(request,'متاسفانه درخواست شما ثبت نشد')
+            return redirect('Home')    

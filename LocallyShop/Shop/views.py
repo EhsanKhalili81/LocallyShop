@@ -47,9 +47,10 @@ def addtocart(request,proid):
         bs.save()
     else:
         messages.warning(request,'لطفا اول به حساب کاربری خود وارد شوید')
+        return redirect('Home')   
     # return render(request,'ProductDetail.html',{'pr':product})
    # t = request.META.get('HTTP_REFERER')
-    return redirect('Cart')
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def rmproduct(request,proid):
@@ -69,7 +70,11 @@ def FinalOrder(request):
     user=User.objects.get(pk=request.user.id)
     userinfo=Userinformation.objects.get(user=user)
     order=Order.objects.get(user=user,orderstatus=0)
-    return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order})
+    if userinfo.address is None or userinfo.kodeposti is None :
+        messages.success(request,'لطفا کد پستی یا آدرس خود را ثبت کنید')
+        return redirect('Home')
+    else:
+        return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order})
 
 def SubmitOrder(request):
     order=Order.objects.get(user=request.user,orderstatus=0)

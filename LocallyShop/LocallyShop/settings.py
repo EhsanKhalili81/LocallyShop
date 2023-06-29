@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'Core.apps.category',
                 'Shop.apps.basketcounter',
+                'Account.apps.is_seller',
             ],
         },
     },

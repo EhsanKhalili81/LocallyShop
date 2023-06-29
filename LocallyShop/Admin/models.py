@@ -21,5 +21,4 @@ class Slider(models.Model):
 
 class Card(models.Model):
     Title = models.CharField(max_length=100)
-    Description = models.CharField(max_length=255)
     Image = models.ImageField(upload_to=file_path,null=True,blank=True)

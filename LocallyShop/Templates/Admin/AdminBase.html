@@ -71,6 +71,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'Home' %}" class="nav-link">بازگشت به سایت اصلی</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'LogoutUser' %}" class="nav-link">خروج</a>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -96,8 +99,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 کاربران
@@ -106,7 +109,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'User' 1 %}" class="nav-link active">
+                <a href="{% url 'User' 1 %}" class="nav-link ">
                   <i class="fa fa-user nav-icon"></i>
                   <p>لیست کاربران عادی</p>
                 </a>
@@ -131,8 +134,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-shopping-basket"></i>
               <p>
                 محصولات
@@ -141,7 +144,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'Product' %}" class="nav-link active">
+                <a href="{% url 'Product' %}" class="nav-link ">
                   <i class="fa fa-list nav-icon"></i>
                   <p>لیست محصولات </p>
                 </a>
@@ -154,8 +157,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 صفحه اصلی
@@ -164,28 +167,71 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="{% url 'Slider'  %}" class="nav-link ">
                   <i class="fa fa-image nav-icon"></i>
                   <p>اسلایدر</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{% url 'Card'  %}" class="nav-link">
                   <i class="fa fa-image nav-icon"></i>
                   <p>کارت ها</p>
                 </a>
               </li>
+            </ul>
+            
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fa fa-pen"></i>
+              <p>
+                دسته بندی 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{% url 'Category'  %}" class="nav-link ">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>لیست دسته بندی ها</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'Addct'  %}" class="nav-link">
                   <i class="fa fa-pen nav-icon"></i>
-                  <p>دسته بندی</p>
+                  <p>افزودن دسته بندی</p>
                 </a>
               </li>
             </ul>
+            
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fa fa-list"></i>
+              <p>
+                سفارشات 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Orders'  %}" class="nav-link ">
+                  <i class="fa fa-truck nav-icon"></i>
+                  <p>سفارشات در حال پردازش</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'OrderRecieve'  %}" class="nav-link">
+                  <i class="fa fa-archive nav-icon"></i>
+                  <p>سفارشات تحویل داده شده</p>
+                </a>
+              </li>
+            </ul>
+            
             <li class="nav-item">
-              <a href="./index.html" class="nav-link active">
-                <i class="fa fa-list nav-icon"></i>
-                <p>لیست سفارشات</p>
+              <a href="{% url 'SellerRQ'  %}" class="nav-link ">
+                <i class="fa fa-envelope-open nav-icon"></i>
+                <p>درخواست فروشندگی</p>
               </a>
             </li>
           </li>

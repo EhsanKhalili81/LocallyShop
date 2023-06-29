@@ -1,0 +1,58 @@
+{% extends 'Admin/AdminBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+
+
+
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-4">
+            <h1>ویرایش دسته بندی</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <!-- left column -->
+          <div class="col-md-4"></div>
+          <div class="col-md-4" >
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 style="text-align: center;">فرم</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form " method="post" action="{% url 'EditSelectedCt' ct.id %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="card-body col-md-12">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">عنوان</label>
+                      <input required type="text" value="{{ct.Title}}" class="form-control" name="title" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <button type="submit" class="btn btn-primary">ثبت</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  {% endblock%}

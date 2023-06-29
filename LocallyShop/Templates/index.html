@@ -37,27 +37,12 @@
     </div>
     <div>
         <div class="container">
-            <h2 class="" style="margin-top: 52px;margin-left: 34px;font-family: 'Open Sans', sans-serif;font-size: 22px;font-weight: 800;line-height: 32px;color: rgb(0,0,0);text-align: center;">دسته بندی ها</h2>
+            <h2 class="card justify-content-center" style=" width: 80rem; margin-top: 52px;margin-left: 34px;font-family: 'Open Sans', sans-serif;font-size: 22px;font-weight: 800;line-height: 32px;color: rgb(255, 255, 255);text-align: center;background-color: black;">پیشنهادات</h2>
             <div class="cust_bloglistintro">
                 <p style="margin-left: 34px;color: rgba(255,255,255,0.5);font-size: 14px;"></p>
             </div>
             <div class="row container justify-content-center"">
                 {% for cat in card%}
-                <!-- <div class="col-md-4 cust_blogteaser card" style="padding-bottom: 20px;margin-bottom: 32px;height: 600px;">
-                    <a href="#"><img class="img-fluid h-75" src="{{cat.Image.url}}"></a>
-                    <h3 style="text-align: right;margin-top: 20px;font-family: 'Open Sans', sans-serif;font-size: 18px;margin-right: 0;margin-left: 24px;line-height: 34px;letter-spacing: 0px;font-style: normal;font-weight: bold;">{{cat.Title}}:<br></h3>
-                    <p class="text-secondary" style="text-align: right;font-size: 14px;font-family: 'Open Sans', sans-serif;line-height: 22px;color: rgb(9,9,10);margin-left: 24px;word-wrap: break-word;">{{cat.Description}}</p>
-                </div> -->
-                <!-- <div class="card m-3 border-dark" style="width: 22rem;background-color: rgb(255, 255, 255);">
-                    <div class="col-xl-12  col-lg-12 col-sm-8 w-100">
-                        <img src="{{ cat.Image.url }}" class="card-img-top h-100 w-100" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">{{ cat.Title }}</h5>
-                      <h6 class="card-text">توضیحات: {{ cat.Description }} </h6>
-                      <div class="text-center mt-3 text-light"><a href="" class="btn text-light sharp rounded-0 w-100 ms-1" type="button" style="background-color: black;">نمایش محصول</a></div>
-                    </div>
-                  </div> -->
                   <div class="col-md-8 col-lg-6 col-xl-4 my-5">
                     <div class="card text-black">
                       <i class="fab  fa-lg px-3"></i>
@@ -68,7 +53,6 @@
                         </div>
                         <div class="pt-3">
                           <div class="d-flex justify-content-center">
-                            <span></span><span style="overflow: hidden;">{{ cat.Description }}</span>
                           </div>
                         </div>
                         <hr>
