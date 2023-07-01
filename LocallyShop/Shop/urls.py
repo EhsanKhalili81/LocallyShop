@@ -10,4 +10,5 @@ urlpatterns=[
     path('Showorders/',views.Showorders,name='Showorders'),
     path('FinalOrder/',views.FinalOrder,name='FinalOrder'),
     path('SubmitOrder/',views.SubmitOrder,name='SubmitOrder'),
+    path('AddComment/<int:proid>/',views.AddComment,name='AddComment'),
 ]

@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Category
 from Admin.models import Slider,Card
 from Seller.models import Product
-from Shop.models import Order
+from Shop.models import Order,Comments
+from django.utils import timezone
 
 # Create your views here.
 
@@ -23,14 +24,14 @@ def AcLogin(request):
 
 def AcRegister(request):
     return render(request,'Register.html')
-
 # def Products(request):
 #     pr=Product.objects.all()
 #     return render(request,'Product.html',{'pr':pr})
 
 def ProductDetail(request,proid):
     pr=Product.objects.get(pk=proid)
-    return render(request,'ProductDetail.html',{'pr':pr})
+    cm=Comments.objects.filter(product=pr).order_by('-date_created')
+    return render(request,'ProductDetail.html',{'pr':pr,'comments':cm})
 
 def Showproduct(request,ctid):
     pr=Product.objects.filter(category=ctid)

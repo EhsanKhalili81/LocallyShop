@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load humanize %}
+{% csrf_token %}
     <section style="background-color: #eee;">
         <div class="container py-5">
           <div class="row justify-content-start">
@@ -38,11 +39,25 @@
                 </div>
                 <hr>
                 <div class="d-flex row justify-content-center pb-3 ">
-                  <div class="col-4"><img class="w-100" src="{{ pr.Image.url }}" alt=""></div>
+                  <form action="{% url 'AddComment' pr.id %}" method="post">
+                    {% csrf_token %}
+                    <textarea class="w-100" placeholder="نظر" name="comment" id="" cols="109" rows="8"></textarea>
+                    <input type="submit" class="btn bg-black w-100 pt-1 text-white" value="ارسال">
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+          <h3 class="pt-5"> نظرات :</h3>
+          <hr>
+          {% for i in comments%}
+          <div class="row m-5 shadow contact-clean">
+            <div class="card-body border-1 bg-light" style="width: 30rem;text-indent: 2%;">
+              <h6 class="pt-2">کاربر : {{i.user}} <span style="margin-right: 70%;font-size: small;">تاریخ : {{i.Jpublish}}</span></h6>
+              <p class="p-2">{{i.comment}}</p>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </section>
 

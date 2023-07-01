@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Order,Basket
+from .models import Order,Basket,Comments
 from Seller.models import Product 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -99,3 +99,11 @@ def SubmitOrder(request):
     else:
         messages.warning(request,'ثبت سفارش انجام نشد')
     return redirect('Home')
+
+def AddComment(request,proid):
+    pr=Product.objects.get(pk=proid)
+    if request.method == 'POST':
+         comment = request.POST['comment']
+         cm=Comments(user=request.user,product=pr,comment=comment)
+         cm.save()
+    return redirect(request.META.get('HTTP_REFERER'))

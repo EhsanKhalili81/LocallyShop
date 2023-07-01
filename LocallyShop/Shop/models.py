@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Seller.models import Product
+from extensions.utlis import Jalali_Converter
+from django.utils import timezone
 
 # Create your models here.
 
@@ -15,3 +17,15 @@ class Basket(models.Model):
     productid = models.ForeignKey(Product,on_delete=models.CASCADE)
     countp = models.SmallIntegerField()
     price = models.PositiveBigIntegerField()
+
+class Comments(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    comment = models.TextField()
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def Jpublish(self):
+        return Jalali_Converter(self.date_created)
+
+
+
