@@ -45,7 +45,11 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">کدپستی</label>
+                      {% if userinfo.kodeposti is None %}
+                      <input type="text" class="form-control" name="kodeposti" value="0">
+                      {% else%}
                       <input type="text" class="form-control" name="kodeposti" value="{{userinfo.kodeposti}}">
+                      {% endif %}
                   </div>
                   </div>
                   <div class="card-body col-md-6">
@@ -59,7 +63,11 @@
                   </div>
                   <div class="form-group">
                     <label >شماره همراه</label>
+                    {% if userinfo.tel is None %}
+                    <input type="text" class="form-control" name="tel" value="0">
+                    {% else%}
                     <input type="text" class="form-control" name="tel" value="{{userinfo.tel}}">
+                    {% endif %}
                 </div>
                   </div>
                 </div>

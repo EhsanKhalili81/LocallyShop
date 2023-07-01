@@ -35,6 +35,11 @@ def LoginUser(request):
         Userinfo=authenticate(request,username=Username,password=Password)
         if Userinfo is not None:
             is_admin=User.objects.get(username=Userinfo)
+            if Userinformation.objects.filter(user=is_admin):
+                pass
+            else:
+                user_completed=Userinformation(user=is_admin)
+                user_completed.save()       
             seller=Userinformation.objects.get(user=is_admin)
             messages.success(request,'ورود با موفقیت انجام شد ')
             login(request,Userinfo)

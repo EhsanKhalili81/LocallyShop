@@ -33,7 +33,11 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
+                  {% if rq%}
                 <table id="example2" class="table table-responsive table-bordered table-hover dataTable table-la" role="grid" aria-describedby="example2_info">
+                  {% else%}
+                  <table id="example2" class="table table-bordered table-hover dataTable table-la" role="grid" aria-describedby="example2_info">
+                    {% endif %}
                 <thead>
                 <tr role="row  ">
                     <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browser: activate to sort column ascending">آیدی کاربر</th>

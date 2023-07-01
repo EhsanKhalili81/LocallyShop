@@ -13,5 +13,5 @@ class Order(models.Model):
 class Basket(models.Model):
     orderid = models.ForeignKey(Order,on_delete=models.CASCADE)
     productid = models.ForeignKey(Product,on_delete=models.CASCADE)
-    count = models.SmallIntegerField()
+    countp = models.SmallIntegerField()
     price = models.PositiveBigIntegerField()

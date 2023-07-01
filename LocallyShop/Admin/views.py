@@ -69,7 +69,7 @@ def EditUser(request,iduser):
         elif typeuser == 3 :
             seller=False
             admin=True 
-        User_Register=User(pk=userinfo.id,is_staff=admin,username=userinfo.username,email=email,first_name=name,last_name=lname)
+        User_Register=User(pk=userinfo.id,is_staff=admin,username=userinfo.username,email=email,first_name=name,last_name=lname,password=userinfo.password)
         User_Register.save()
         userinformation=Userinformation(user=User_Register,is_seller=seller,tel=request.POST['tel'],address=request.POST['address'],kodeposti=request.POST['kodeposti'])
         userinformation.save()
@@ -150,8 +150,7 @@ def addproducts(request):
         price=request.POST['price']
         size=request.POST['size']
         qty=request.POST['qty']
-        qtysell=request.POST['qtysell']
-        pr=Product(User=seller,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Qtysell=qtysell,Image=image)
+        pr=Product(User=seller,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Image=image)
         pr.save()
     if pr :
         messages.success(request,'محصول با موفقیت اضافه شد .')
@@ -174,8 +173,7 @@ def editproduct(requset,idpr):
         price=requset.POST['price']
         size=requset.POST['size']
         qty=requset.POST['qty']
-        qtysell=requset.POST['qtysell']
-        pr=Product(pk=idpr,User=pro.User,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Qtysell=qtysell,Image=image)
+        pr=Product(pk=idpr,User=pro.User,Title=name,Description=description,category=ct,Price=price,Size=size,Qty=qty,Image=image)
         pr.save()
     if pr :
         messages.success(requset,'محصول با موفقیت ویرایش شد .')
@@ -261,7 +259,7 @@ def Orders(request):
 
 def SubmitOrder(request,idorder):
     user=Order.objects.get(pk=idorder)
-    ord=Order(pk=idorder,user=user.user,orderstatus=2)
+    ord=Order(pk=idorder,user=user.user,orderstatus=2,sumprice=user.sumprice)
     ord.save()
     messages.success(request,'عملیات موفقیت آمیز بود.')
     return redirect('admin1/Home')

@@ -1,0 +1,74 @@
+{% extends 'Seller/SellerBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+{% load humanize %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ message }} </h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Main content -->
+    <section class="content" style="text-align: center;">
+      <div class="row">
+        <div class="col-12 ">
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
+                <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <thead>
+                <tr role="row ">
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browser: activate to sort column ascending">آیدی سفارش</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Browser: activate to sort column ascending">آیدی خریدار</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">نام خریدار</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">نام محصول</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">تعداد</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">قیمت کل</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in pr %}   
+                <tr role="row" class="odd">
+                  <td class="sorting_1">{{i.orderid.id}}</td>
+                  <td>{{i.orderid.user.id}}</td>
+                  <td>{{i.orderid.user}}</td>
+                  <td>{{i.productid.Title}}</td>
+                  <td>{{i.countp}}</td>
+                  <td>{{i.price|intcomma}} ریال</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+              </table></div></div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}

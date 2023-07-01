@@ -35,3 +35,18 @@ def ProductDetail(request,proid):
 def Showproduct(request,ctid):
     pr=Product.objects.filter(category=ctid)
     return render(request,'Product.html',{'pr':pr})
+
+def cheap(request):
+    Pr=Product.objects.all().order_by('Price')
+    return render(request,'Product.html',{'pr':Pr})
+
+def Expensive(request):
+    Pr=Product.objects.all().order_by('-Price')
+    return render(request,'Product.html',{'pr':Pr})
+
+def New(request):
+    Pr=Product.objects.all().order_by('-id')
+    return render(request,'Product.html',{'pr':Pr})
+
+def AboutUs(request):
+    return render(request,'AboutUs.html')

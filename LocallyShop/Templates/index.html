@@ -43,6 +43,7 @@
             </div>
             <div class="row container justify-content-center"">
                 {% for cat in card%}
+                 {% if cat.id == 1%}
                   <div class="col-md-8 col-lg-6 col-xl-4 my-5">
                     <div class="card text-black">
                       <i class="fab  fa-lg px-3"></i>
@@ -56,10 +57,47 @@
                           </div>
                         </div>
                         <hr>
-                          <div class="text-center text-light "><a href="" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصولات</a></div>
+                          <div class="text-center text-light "><a href="{% url 'ExpensiveProducts' %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصولات</a></div>
                       </div>
                     </div>
                   </div>
+                  {% elif cat.id == 2%}
+                  <div class="col-md-8 col-lg-6 col-xl-4 my-5">
+                    <div class="card text-black">
+                      <i class="fab  fa-lg px-3"></i>
+                      <img src="{{ cat.Image.url }}"class="card-img-top h-50"/>
+                      <div class="card-body">
+                        <div class="text-center" >
+                          <h5 class="card-title">{{ cat.Title }}</h5>
+                        </div>
+                        <div class="pt-3">
+                          <div class="d-flex justify-content-center">
+                          </div>
+                        </div>
+                        <hr>
+                          <div class="text-center text-light "><a href="{% url 'CheapProducts' %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصولات</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {% else%}
+                  <div class="col-md-8 col-lg-6 col-xl-4 my-5">
+                    <div class="card text-black">
+                      <i class="fab  fa-lg px-3"></i>
+                      <img src="{{ cat.Image.url }}"class="card-img-top h-50"/>
+                      <div class="card-body">
+                        <div class="text-center" >
+                          <h5 class="card-title">{{ cat.Title }}</h5>
+                        </div>
+                        <div class="pt-3">
+                          <div class="d-flex justify-content-center">
+                          </div>
+                        </div>
+                        <hr>
+                          <div class="text-center text-light "><a href="{% url 'NewProducts' %}" class="btn text-light sharp rounded-0 w-100 " type="button" style="background-color: black;">نمایش محصولات</a></div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
                 {% endfor %}
             </div>
         </div>

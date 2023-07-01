@@ -38,12 +38,20 @@ def addtocart(request,proid):
         basket=Basket.objects.filter(orderid=order1,productid=product)
         if basket:
             basket=Basket.objects.get(orderid=order1,productid=product)
-            c=basket.count + 1
-            p=product.Price*c
-            bs=Basket(id=basket.id,orderid=order1,productid=product,count=c,price=p)
+            if basket.countp+1 > product.Qty:
+                messages.warning(request,"موجودی محصول کافی نیست .")
+                return redirect('Home')
+            else:
+                c=basket.countp + 1
+                p=product.Price*c
+                bs=Basket(id=basket.id,orderid=order1,productid=product,countp=c,price=p)
         else:
-            p=product.Price*c
-            bs=Basket(orderid=order1,productid=product,count=1,price=p)    
+            if  product.Qty == 0:
+                messages.warning(request,"موجودی محصول کافی نیست .")
+                return redirect('Home')
+            else:
+                p=product.Price*c
+                bs=Basket(orderid=order1,productid=product,countp=1,price=p)  
         bs.save()
     else:
         messages.warning(request,'لطفا اول به حساب کاربری خود وارد شوید')
@@ -77,10 +85,16 @@ def FinalOrder(request):
         return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order})
 
 def SubmitOrder(request):
+    a=0
     order=Order.objects.get(user=request.user,orderstatus=0)
     ordercomplete=Order(id=order.id,orderstatus=1,user=request.user,sumprice=order.sumprice)
     ordercomplete.save()
     if ordercomplete:
+        bs=Basket.objects.filter(orderid=order)
+        for i in bs:
+            a=i.productid.Qty-i.countp
+            predit=Product(pk=i.productid.pk,User=i.productid.User,Title=i.productid.Title,Description=i.productid.Description,category=i.productid.category,Qty=a,Price=i.productid.Price,Image=i.productid.Image,Size=i.productid.Size)
+            predit.save()
         messages.success(request,'ثبت سفارش با موفقیت انجام شد')
     else:
         messages.warning(request,'ثبت سفارش انجام نشد')
