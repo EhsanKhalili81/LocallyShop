@@ -34,5 +34,7 @@ urlpatterns=[
     path('AddNewCt/',views.AddNewCt,name='AddNewCt'),
     path('Editct/<int:idct>/',views.Editct,name='Editct'),
     path('EditSelectedCt/<int:idct>/',views.EditSelectedCt,name='EditSelectedCt'),
+    path('comments/',views.comments,name='comments'),
+    path('RmComment/<int:cmid>/',views.RmComment,name='RmComment'),
     
 ]

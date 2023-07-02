@@ -104,6 +104,9 @@ def AddComment(request,proid):
     pr=Product.objects.get(pk=proid)
     if request.method == 'POST':
          comment = request.POST['comment']
-         cm=Comments(user=request.user,product=pr,comment=comment)
-         cm.save()
+         if comment == "":
+             pass
+         else:
+            cm=Comments(user=request.user,product=pr,comment=comment)
+            cm.save()
     return redirect(request.META.get('HTTP_REFERER'))

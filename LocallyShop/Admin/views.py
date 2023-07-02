@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from Account.models import Userinformation,SellerRequest
-from Shop.models import Order,Basket
+from Shop.models import Order,Basket,Comments
 from django.contrib import messages
 from django.db.models import Q
 from Seller.models import Product
@@ -303,3 +303,16 @@ def EditSelectedCt(request,idct):
         messages.warning(request,'متاسفانه دسته بندی ویرایش نشد .')   
      return redirect('admin1/Home')
 
+def comments(request):
+    cm=Comments.objects.all()
+    messages.success(request,'نظرات')
+    return render(request,'Admin/Comments.html',{'comment':cm})
+
+def RmComment(request,cmid):
+    cm=Comments.objects.get(pk=cmid)
+    cm.delete()
+    if cm:
+        messages.success(request,'کامنت مورد نظر با موفقیت حذف شد .')
+    else:
+        messages.warning(request,' متاسفانه کامنت مورد نظر حذف نشد')
+    return redirect('admin1/Home')

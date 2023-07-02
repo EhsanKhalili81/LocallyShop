@@ -12,4 +12,5 @@ urlpatterns=[
     path('Editpr/<int:idpr>/',views.Editpr,name='Seller/Editpr'),
     path('editproduct/<int:idpr>/',views.editproduct,name='Seller/editproduct'),
     path('SoldProducts/',views.SoldProducts,name='Seller/SoldProducts'),
+    path('comments/',views.comments,name='Seller/comments'),
 ]

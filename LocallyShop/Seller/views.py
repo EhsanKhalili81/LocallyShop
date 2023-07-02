@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Product
-from Shop.models import Order,Basket
+from Shop.models import Order,Basket,Comments
 from django.db.models import Q
 from Core.models import Category
 from Account.models import Userinformation
+from django.contrib.auth.models import User
 # Create your views here.
 
 def SellerHome(request):
@@ -90,4 +91,14 @@ def SoldProducts(request):
             if i.productid.User == request.user:
                 sold.append(i)
     messages.success(request,'کالاهای فروخته شده')            
-    return render(request,'Seller/SoldProducts.html',{'pr':sold})        
+    return render(request,'Seller/SoldProducts.html',{'pr':sold})     
+
+def comments(request):
+    com=[]
+    pr=Product.objects.filter(User=request.user)
+    for i in pr:
+        cm=Comments.objects.filter(product=i)
+        com.append(cm)
+    messages.success(request,'نظرات')           
+    print(com) 
+    return render(request,'Seller/Comments.html',{'cm':com})   
