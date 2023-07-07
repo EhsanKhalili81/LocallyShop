@@ -53,7 +53,11 @@
           {% for i in comments%}
           <div class="row m-5 shadow contact-clean">
             <div class="card-body border-1 bg-light" style="width: 30rem;text-indent: 2%;">
+              {% if i.user %}
               <h6 class="pt-2">کاربر : {{i.user}} <span style="margin-right: 70%;font-size: small;">تاریخ : {{i.Jpublish}}</span></h6>
+              {% else %}
+              <h6 class="pt-2">کاربر : ناشناس <span style="margin-right: 70%;font-size: small;">تاریخ : {{i.Jpublish}}</span></h6>
+              {% endif %}
               <p class="p-2">{{i.comment}}</p>
             </div>
           </div>

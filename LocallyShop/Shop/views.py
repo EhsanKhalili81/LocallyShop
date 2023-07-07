@@ -107,6 +107,10 @@ def AddComment(request,proid):
          if comment == "":
              pass
          else:
-            cm=Comments(user=request.user,product=pr,comment=comment)
-            cm.save()
+            if request.user.id:
+                cm=Comments(user=request.user,product=pr,comment=comment)
+                cm.save()
+            else:
+                cm=Comments(user=None,product=pr,comment=comment)
+                cm.save()
     return redirect(request.META.get('HTTP_REFERER'))

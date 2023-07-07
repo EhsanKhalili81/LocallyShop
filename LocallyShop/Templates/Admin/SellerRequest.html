@@ -46,6 +46,7 @@
                     <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">کدپستی </th>
                     <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">آدرس</th>
                     <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">خلاصه کار</th>
+                    <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">تاریخ ثبت</th>
                     <th class="" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">واکنش</th>
                 </tr>
                 </thead>
@@ -58,6 +59,7 @@
                   <td>{{i.kodeposti}}</td>
                   <td>{{i.address}}</td>
                   <td>{{i.describe}}</td>
+                  <td>{{i.date_created}}</td>
                   <td>
                     <a href="{% url 'SRQAccept' i.user_id %}" style="color: rgb(31, 187, 0);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">

@@ -4,6 +4,7 @@ from Admin.models import Slider,Card
 from Seller.models import Product
 from Shop.models import Order,Comments
 from django.utils import timezone
+from extensions.utlis import Jalali_Converter
 
 # Create your views here.
 
@@ -51,3 +52,7 @@ def New(request):
 
 def AboutUs(request):
     return render(request,'AboutUs.html')
+
+
+
+

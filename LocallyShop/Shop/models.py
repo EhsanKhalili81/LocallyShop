@@ -9,7 +9,11 @@ from django.utils import timezone
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     sumprice = models.PositiveBigIntegerField(default=0)
+    date_created = models.DateTimeField(default=timezone.now)
     orderstatus = models.SmallIntegerField(default=0)
+        
+    def Jpublish(self):
+        return Jalali_Converter(self.date_created)
 
 
 class Basket(models.Model):
@@ -19,7 +23,7 @@ class Basket(models.Model):
     price = models.PositiveBigIntegerField()
 
 class Comments(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     comment = models.TextField()
     date_created = models.DateTimeField(default=timezone.now)

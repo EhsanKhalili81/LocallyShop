@@ -227,7 +227,6 @@ def Editcrd(request,idcrd):
 
 def SellerRQ(request):
     rq=SellerRequest.objects.filter(status=False).values()
-    print(rq)
     messages.success(request,'درخواست برای فروشندگی')
     return render(request,'Admin/SellerRequest.html',{'rq':rq})
 

@@ -4,7 +4,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Userinformation,SellerRequest
-
+from django.utils import timezone
 
 def RegisterUser(request):
     Userinfo=User.objects.all()
