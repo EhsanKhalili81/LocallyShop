@@ -25,9 +25,6 @@ def AcLogin(request):
 
 def AcRegister(request):
     return render(request,'Register.html')
-# def Products(request):
-#     pr=Product.objects.all()
-#     return render(request,'Product.html',{'pr':pr})
 
 def ProductDetail(request,proid):
     pr=Product.objects.get(pk=proid)

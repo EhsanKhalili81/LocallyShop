@@ -100,5 +100,4 @@ def comments(request):
         cm=Comments.objects.filter(product=i)
         com.append(cm)
     messages.success(request,'نظرات')           
-    print(com) 
     return render(request,'Seller/Comments.html',{'cm':com})   

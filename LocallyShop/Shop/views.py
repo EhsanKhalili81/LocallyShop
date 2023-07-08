@@ -56,8 +56,6 @@ def addtocart(request,proid):
     else:
         messages.warning(request,'لطفا اول به حساب کاربری خود وارد شوید')
         return redirect('Home')   
-    # return render(request,'ProductDetail.html',{'pr':product})
-   # t = request.META.get('HTTP_REFERER')
     return redirect(request.META.get('HTTP_REFERER'))
 
 

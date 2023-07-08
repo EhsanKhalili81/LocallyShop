@@ -1,6 +1,5 @@
 from django.db import models
 import datetime,os
-
 # Create your models here.
 
 def filepath(request,filename):
