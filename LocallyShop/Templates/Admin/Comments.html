@@ -47,7 +47,11 @@
                 {% for i in comment %}   
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{i.id}}</td>
+                  {% if i.user.username%}
                   <td>{{i.user.username}}</td>
+                  {% else %}
+                  <td>ناشناس</td>
+                  {% endif %}
                   <td>{{i.product.Title}}</td>
                   <td>{{i.comment}}</td>
                   <td>

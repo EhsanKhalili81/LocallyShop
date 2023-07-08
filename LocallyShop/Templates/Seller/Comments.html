@@ -47,7 +47,11 @@
                 {% for x in i%}  
                 <tr role="row" class="odd">
                   <td class="sorting_1">{{x.id}}</td>
+                  {% if x.user.username%}
                   <td>{{x.user.username}}</td>
+                  {% else %}
+                  <td>ناشناس</td>
+                  {% endif %}
                   <td>{{x.product.Title}}</td>
                   <td>{{x.comment}}</td>
                 </tr>
