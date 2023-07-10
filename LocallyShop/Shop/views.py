@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Order,Basket,Comments
+from .models import Order,Basket,Comments,malyatba
 from Seller.models import Product 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -74,24 +74,29 @@ def Showorders(request):
 
 def FinalOrder(request):
     user=User.objects.get(pk=request.user.id)
+    mlt=malyatba.objects.get(pk=1)
     userinfo=Userinformation.objects.get(user=user)
     order=Order.objects.get(user=user,orderstatus=0)
+    m=(order.sumprice/100)*(mlt.malyat)
+    order1=Order(pk=order.pk,user=order.user,date_created=order.date_created,sumprice=order.sumprice+m,orderstatus=order.orderstatus,malyat=m)
+    order1.save()
+    order2=Order.objects.get(user=user,orderstatus=0)
     if userinfo.address is None or userinfo.kodeposti is None :
         messages.success(request,'لطفا کد پستی یا آدرس خود را ثبت کنید')
         return redirect('Home')
     else:
-        return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order})
+        return render(request,'FinalOrder.html',{'userinfo':userinfo,'order':order2})
 
 def SubmitOrder(request):
     a=0
     order=Order.objects.get(user=request.user,orderstatus=0)
-    ordercomplete=Order(id=order.id,orderstatus=1,user=request.user,sumprice=order.sumprice)
+    ordercomplete=Order(id=order.id,orderstatus=1,user=request.user,malyat=order.malyat,sumprice=order.sumprice)
     ordercomplete.save()
     if ordercomplete:
         bs=Basket.objects.filter(orderid=order)
         for i in bs:
             a=i.productid.Qty-i.countp
-            predit=Product(pk=i.productid.pk,User=i.productid.User,Title=i.productid.Title,Description=i.productid.Description,category=i.productid.category,Qty=a,Price=i.productid.Price,Image=i.productid.Image,Size=i.productid.Size)
+            predit=Product(pk=i.productid.pk,User=i.productid.User ,Title=i.productid.Title,Description=i.productid.Description,category=i.productid.category,Qty=a,Price=i.productid.Price,Image=i.productid.Image,Size=i.productid.Size)
             predit.save()
         messages.success(request,'ثبت سفارش با موفقیت انجام شد')
     else:
@@ -112,3 +117,17 @@ def AddComment(request,proid):
                 cm=Comments(user=None,product=pr,comment=comment)
                 cm.save()
     return redirect(request.META.get('HTTP_REFERER'))
+
+
+def Malyatamount(request):
+    ml=malyatba.objects.all()
+    return render(request,'Admin/Malyat.html',{'ml':ml})
+
+def updateml(request,mlid):
+    if request.method=="POST":
+        mlt=int(request.POST['amount'])
+        ml=malyatba(pk=mlid,malyat=mlt)
+        ml.save()
+        messages.success(request,"عملیات موفقیت آمیز بود.")
+    return redirect('admin1/Home')    
+

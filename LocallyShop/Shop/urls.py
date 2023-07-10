@@ -11,4 +11,6 @@ urlpatterns=[
     path('FinalOrder/',views.FinalOrder,name='FinalOrder'),
     path('SubmitOrder/',views.SubmitOrder,name='SubmitOrder'),
     path('AddComment/<int:proid>/',views.AddComment,name='AddComment'),
+    path('Malyat/',views.Malyatamount,name='Malyat'),
+    path('updateml/<int:mlid>/',views.updateml,name='updateml'),
 ]

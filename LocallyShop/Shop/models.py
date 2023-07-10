@@ -11,6 +11,7 @@ class Order(models.Model):
     sumprice = models.PositiveBigIntegerField(default=0)
     date_created = models.DateTimeField(default=timezone.now)
     orderstatus = models.SmallIntegerField(default=0)
+    malyat = models.PositiveBigIntegerField(default=0, null=True)
         
     def Jpublish(self):
         return Jalali_Converter(self.date_created)
@@ -30,6 +31,10 @@ class Comments(models.Model):
 
     def Jpublish(self):
         return Jalali_Converter(self.date_created)
+    
+
+class malyatba(models.Model):
+    malyat = models.SmallIntegerField(default=0,null=True)
 
 
 

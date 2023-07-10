@@ -1,0 +1,60 @@
+{% extends 'Admin/AdminBase.html'%}
+
+{% block main %}
+{% csrf_token %}
+
+
+
+<div class="content-wrapper" style="min-height: 1017.2px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-4">
+            <h1>میزان مالیات</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <!-- left column -->
+          <div class="col-md-4"></div>
+          <div class="col-md-4" >
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 style="text-align: center;">فرم</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              {% for i in ml%}
+              <form role="form " method="post" action="{% url 'updateml' i.id %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="card-body col-md-12">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">میزان مالیات</label>
+                      <input required type="text" class="form-control" name="amount" value="{{i.malyat}}" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <button type="submit" class="btn btn-primary">ثبت</button>
+                </div>
+              </form>
+              {% endfor  %}
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  {% endblock%}

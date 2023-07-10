@@ -3,11 +3,7 @@
 {% block content %}
 {% load humanize %}
 <div class="bootstrap_datatables">
-  {% if ord%}
     <div class="container py-5 ">
-      {% else %}
-      <div class="container py-5 vh-100">
-        {% endif %}
       <header class="text-center text-black">
         <h1 class="display-4">جزئیات سفارشات</h1>
       </header>
@@ -50,7 +46,8 @@
                   <thead  style="text-align: center;">
                     <tr>
                       <td>سفارش : {{ord.id}}</td>
-                      <td colspan="2">جمع کل : {{ord.sumprice|intcomma}} ریال</td>
+                      <td colspan="1">جمع کل : {{ord.sumprice|intcomma}} ریال</td>
+                      <td colspan="1">مالیات : {{ord.malyat}}</td>
                       {% if ord.orderstatus == 1 %}
                       <td  colspan="3">وضعیت : در حال پردازش ...</td>
                       {% else %}
